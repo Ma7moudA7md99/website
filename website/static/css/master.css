@@ -1,0 +1,63 @@
+:root {
+  --main-color: #0086c4;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Mono", monospace;
+  /* background-color: #0086c425; */
+}
+ul li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.active {
+  transform: scale(1.6);
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+}
+nav {
+  margin-top: 10px;
+  box-shadow: 0px 6px 3px 0px #00000008;
+}
+.container {
+  width: 80%;
+  margin: 0 10%;
+  display: flex;
+  justify-content: space-between;
+}
+nav .left input {
+  margin: 7%;
+  height: 30px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding-left: 7px;
+}
+nav .left input:focus {
+  border: 1px solid var(--main-color);
+  outline: none;
+  color: var(--main-color);
+}
+nav .middle {
+  margin-left: 12%;
+}
+nav .middle img {
+  height: 70px;
+}
+nav .right ul {
+  display: flex;
+}
+nav .right ul li {
+  margin: 0 15px;
+  font-size: 20px;
+  /* color: black; */
+  font-weight: bold;
+  transition: 1s;
+}
+nav .search i.fa-solid {
+  margin-top: 50%;
+}

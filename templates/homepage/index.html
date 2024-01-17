@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <!-- main css file -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Medical Care</title>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="left">
+          <div class="search-container">
+            <input type="search" placeholder="Search" />
+          </div>
+        </div>
+        <div class="middle">
+          <a href="http://127.0.0.1:8000/"
+            ><img src="{% static 'image/logo.png' %}" alt=""
+          /></a>
+        </div>
+        <div class="right">
+          <ul class="links">
+            <li class="active"><a href="">Home</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </body>
+  <script src="{% static 'js/all.min.js' %}"></script>
+</html>
