@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <!-- main css file -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Medical Care</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="http://127.0.0.1:8000/">
+            <img src="{% static 'image/logo.png' %}" alt="" />
+          </a>
+        </div>
+        <div class="right">
+          <ul class="links">
+            <li class="nav-item active"><a href="">Home</a></li>
+            <li class="nav-item"><a href="">Services</a></li>
+            <li class="nav-item"><a href="">Contact</a></li>
+            <li class="nav-item"><a href="">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content%} {% endblock%}
+    <footer>
+      <div class="container">
+        <div class="logo">
+          <img src="{% static 'image/white logo.png' %}" alt="" />
+        </div>
+        <div class="social-media">
+          <div class="icons facebook">
+            <i class="fa-brands fa-facebook"></i>
+          </div>
+          <div class="icons twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </div>
+          <div class="icons youtube">
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+          <div class="icons insatgram">
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          <span class="rights">
+            <p>all rights reserved @2024</p>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="{% static 'js/all.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+</html>
