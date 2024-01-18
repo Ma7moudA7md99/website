@@ -5,30 +5,43 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", monospace;
-  background-color: #0086c425;
+  /* background-color: #0086c425; */
 }
 ul li {
   list-style: none;
 }
 a {
   text-decoration: none;
+  color: inherit;
+}
+.active {
+  transform: scale(1.6);
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+}
+nav {
+  box-shadow: 0px 6px 3px 0px #00000008;
+  height: 80px;
 }
 .container {
-  width: 70%;
-  margin: 0 15%;
-}
-.container nav {
-  margin-top: 10px;
+  width: 80%;
+  margin: 0 10%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid black;
 }
-.container nav .left img {
-  height: 70px;
+nav .logo img {
+  height: 50px;
+  transform: translateY(0%);
 }
-.container nav .right ul {
+nav .right ul {
   display: flex;
 }
-.container nav .right ul li {
+nav .right ul li {
   margin: 0 15px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 1s;
+}
+nav .search i.fa-solid {
+  margin-top: 50%;
 }
