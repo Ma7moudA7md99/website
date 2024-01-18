@@ -108,10 +108,17 @@ footer .social-media {
   margin-top: 10px;
   /* height: 70px; */
 }
-footer .social-media .fa-brands {
-  font-size: 70px;
+footer .social-media div.icons {
+  display: inline;
+  margin: 0 10px;
+  font-size: 17px;
+  cursor: pointer;
 }
-footer .social-media span {
-  /* transform: translateY(50%); */
+footer .social-media div.icons:hover svg {
+  transform: scale(2);
+  transition: 0.5s;
+}
+footer .social-media span.rights {
+  transform: translateY(50%);
   font-size: 12px;
 }
