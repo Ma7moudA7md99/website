@@ -1,1 +1,32 @@
-{% extends 'base.html'%} {% block content%} {% endblock %}
+{% extends 'base.html'%} {% load static%} {% block content%}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<section class="intro">
+  <div
+    class="container aos-init"
+    data-aos="zoom-in"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+  >
+    <div class="content">
+      <div
+        class="text aos-animate"
+        data-aos-delay="0"
+        data-aos-duration="500"
+        data-aos-easing="ease-in-out"
+      >
+        <h1>MEDICAL</h1>
+        <p>Your "HEALTH" is our Responsibility</p>
+      </div>
+      <div class="img">
+        <img src="{% static 'image/home.png' %}" alt="Home" />
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

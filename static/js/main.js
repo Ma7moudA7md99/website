@@ -1,3 +1,4 @@
+// navbar functions
 const navbar = document.querySelector(".navbar");
 
 window.addEventListener("scroll", function () {
@@ -28,3 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", toggleActiveClass);
   toggleActiveClass();
 });
+
+// intro animation
+window.onload = function () {
+  AOS.init();
+};
