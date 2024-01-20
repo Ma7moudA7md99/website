@@ -29,8 +29,3 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", toggleActiveClass);
   toggleActiveClass();
 });
-
-// intro animation
-window.onload = function () {
-  AOS.init();
-};

@@ -1,5 +1,7 @@
 :root {
   --main-color: #0086c4;
+  --p-text-color: #777;
+  --shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   --gradient--color: linear-gradient(
     180deg,
     rgba(0, 134, 196, 1) 18%,

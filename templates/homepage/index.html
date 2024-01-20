@@ -5,7 +5,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
 />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<section class="intro">
+<section class="intro" id="intro">
   <div
     class="container aos-init"
     data-aos="zoom-in"
@@ -15,8 +15,8 @@
     <div class="content">
       <div
         class="text aos-animate"
-        data-aos-delay="0"
-        data-aos-duration="500"
+        data-aos-easing="ease-in-out"
+        data-aos-duration="1000"
         data-aos-easing="ease-in-out"
       >
         <h1>MEDICAL</h1>
@@ -28,5 +28,36 @@
     </div>
   </div>
 </section>
-
+<section class="home" id="home">
+  <div class="container">
+    <div class="word">
+      <h1>Welcome</h1>
+    </div>
+    <div
+      class="img"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
+      <img src="{% static 'image/together.jpg' %}" alt="" />
+    </div>
+    <div class="text" data-aos="fade-left">
+      <p>
+        Our focus is on your overall well being and helping you achieve optimal
+        health and esthetics.
+      </p>
+      <div class="content">
+        <strong>Our Mission</strong>
+        <p>
+          Is to provid to you the treatment and stay with until you recover your
+          health 100%
+        </p>
+      </div>
+      <div class="content">
+        <strong>Professionals in our Clinic</strong>
+        <p>Has provided a high class facility for the treatment</p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
