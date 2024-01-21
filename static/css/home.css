@@ -91,6 +91,7 @@
   height: 30px;
   background-color: var(--main-color);
   box-shadow: var(--shadow);
+  border-radius: 1px;
 }
 .home .text::before {
   transform: rotate(90deg) translate(-50%);
