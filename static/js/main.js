@@ -1,9 +1,15 @@
 // navbar functions
 const navbar = document.querySelector(".navbar");
-
+const fly_btn = document.getElementById("flying-btn");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 0) {
     navbar.classList.add("set-shadow");
+    // fly_btn.classList.add("show-fly-btn");
+    fly_btn.style.right = "10%";
+  }
+  if (window.screenY < 50) {
+    fly_btn.style.right = "-100%";
+    // fly_btn.classList.remove("show-fly-btn");
   } else {
     navbar.classList.remove("set-shadow");
   }
@@ -29,3 +35,5 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", toggleActiveClass);
   toggleActiveClass();
 });
+
+AOS.init();

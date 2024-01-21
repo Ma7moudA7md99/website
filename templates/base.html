@@ -15,10 +15,21 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <title>Medical Care</title>
   </head>
-  <body>
-    <nav class="navbar">
+  <body class="body">
+    <header
+      class="navbar"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+      data-aos-anchor=".body"
+      data-aos-easing="ease-in-out"
+    >
       <div class="container">
         <div class="logo">
           <a href="http://127.0.0.1:8000/">
@@ -34,7 +45,10 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </header>
+    <a id="flying-btn" href="" title="Sign In"
+      ><i class="fa-solid fa-user-plus"></i
+    ></a>
     {% block content%} {% endblock%}
     <footer>
       <div class="container">

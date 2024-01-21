@@ -1,7 +1,7 @@
 :root {
   --main-color: #0086c4;
   --p-text-color: #777;
-  --shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  --shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
   --gradient--color: linear-gradient(
     180deg,
     rgba(0, 134, 196, 1) 18%,
@@ -32,6 +32,7 @@
 }
 /*  */
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", monospace;
@@ -94,7 +95,35 @@ nav .right ul li {
 nav .search i.fa-solid {
   margin-top: 50%;
 }
-
+/* flying btn */
+#flying-btn {
+  /* display: none; */
+  z-index: 3;
+  width: fit-content;
+  position: fixed;
+  right: -100%;
+  bottom: 100px;
+  /* background-color: var(--main-color); */
+  /* background: rgb(0, 134, 196); */
+  background: radial-gradient(
+    circle,
+    rgba(0, 134, 196, 1) 18%,
+    rgba(0, 134, 196, 1) 60%,
+    rgba(255, 255, 255, 1) 95%
+  );
+  box-shadow: var(--shadow);
+  padding: 20px;
+  border-radius: 50%;
+  color: white;
+  transition: 0.5s color;
+  transition: 2s right;
+}
+#flying-btn:hover {
+  color: var(--main-color);
+  background: white;
+  border: 1px solid var(--main-color);
+  cursor: pointer;
+}
 /* start footer */
 footer {
   height: 75px;
@@ -122,4 +151,7 @@ footer .social-media div.icons:hover svg {
 footer .social-media span.rights {
   transform: translateY(50%);
   font-size: 12px;
+}
+.show-fly-btn {
+  right: 10%;
 }
