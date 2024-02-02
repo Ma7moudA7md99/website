@@ -1,0 +1,28 @@
+/* global */
+img:not(.logo img) {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  filter: grayscale(1);
+  transition: 0.5s ease-in-out;
+}
+img:not(.logo img):hover {
+  filter: grayscale(0);
+}
+/* global */
+/* intro-img */
+.intro-img {
+  margin: 80px 0;
+  padding: var(--section-padding);
+}
+.intro-img .container {
+  display: block;
+}
+.intro-img .container .img {
+  width: 70%;
+  height: fit-content;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* intro-img */

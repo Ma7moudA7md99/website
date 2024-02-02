@@ -1,0 +1,250 @@
+/* global  */
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* global  */
+section.describe {
+  padding: 100px 0;
+}
+.describe .container {
+  align-items: center;
+  flex-direction: column;
+}
+.describe .img {
+  margin: 40px 0;
+  width: 900px;
+}
+.describe .img img {
+  box-shadow: var(--shadow);
+  filter: grayscale(1);
+  transition: 1s ease;
+}
+.describe .img img:hover {
+  filter: none;
+}
+
+.describe .text .title {
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+.describe .text p {
+  color: var(--p-text-color);
+  line-height: 2;
+}
+.describe .text .content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.describe .text .content .img {
+  margin: 0 30px;
+}
+.describe .text .content .inner-text {
+  margin: auto 0;
+}
+.describe .text .content .info {
+  position: relative;
+}
+/* icon animation */
+.describe .text .content .info .icon {
+  position: absolute;
+  top: -30px;
+}
+.describe .text .content .info .icon svg {
+  width: 60px;
+}
+.describe .text .content .info .icon #dark1,
+.describe .text .content .info .icon #dark2,
+.describe .text .content .info .icon #light {
+  transition: 1s ease;
+}
+.describe .text .content .info .icon #dark2 {
+  transform: translateX(-100%);
+}
+.describe .text .content .info:hover .icon #light {
+  transform: translateX(15%);
+}
+.describe .text .content .info:hover .icon #dark1 {
+  transform: translateX(40%);
+  opacity: 0;
+}
+.describe .text .content .info:hover .icon #dark2 {
+  transform: translateX(0%);
+}
+/* icon animation */
+.describe .text .content strong {
+  font-size: 1.5em;
+  padding-left: 50px;
+}
+/* form section */
+.form-section {
+  position: relative;
+  padding: 100px 0;
+}
+.form-section .container {
+  gap: 30px;
+}
+.form-section .container .user-input {
+  width: 40%;
+}
+.form-section .user-input .analysis {
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+.form-section .user-input .analysis div {
+  position: relative;
+}
+.form-section .user-input .analysis input {
+  height: 30px;
+  width: 300px;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+  transition: 1s ease-in-out;
+  color: var(--main-color);
+  padding: 4px;
+}
+.form-section .user-input .analysis input::placeholder {
+  color: rgba(0, 134, 196, 0.5);
+}
+.form-section .user-input .analysis input:focus {
+  outline: none;
+}
+.form-section .user-input .analysis input:focus::placeholder {
+  color: var(--main-color);
+}
+/* customize upload button */
+.form-section .user-input .analysis input[type="file"] {
+  display: none;
+}
+.form-section .user-input .analysis span:not(span.uploadLabel) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--main-color);
+  transition: 1s ease-in-out;
+  height: 2px;
+}
+.form-section .user-input .analysis .img {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-section .user-input .analysis label.button {
+  position: relative;
+  color: var(--main-color);
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid var(--main-color);
+}
+.form-section .user-input .analysis label.button::before {
+  content: "Upload skin image";
+  position: absolute;
+  top: -55px;
+  right: -180px;
+  color: black;
+  background-color: white;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 134, 196, 0.5);
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.form-section .user-input .analysis label.button:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.form-section .user-input .analysis label.button:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+.form-section .user-input .analysis span.uploadLabel {
+  margin-top: 10px;
+  font-size: 13px;
+  width: 40%;
+  text-align: center;
+}
+.form-section .result {
+  background-color: var(--main-color);
+  width: 40%;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  color: white;
+  text-align: center;
+}
+.form-section .result h1 {
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+.form-section .result p {
+  color: rgba(255, 255, 255, 0.9);
+}
+/* form section */
+/* responsive */
+@media (max-width: 1024px) {
+  .describe .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .describe .img {
+    width: 90%;
+  }
+  .describe .text {
+    width: 85%;
+  }
+  .describe .text .content {
+    width: 100%;
+  }
+  .describe .text .img {
+    width: 180%;
+  }
+  .describe .text .img img {
+    height: 80%;
+    width: 100%;
+  }
+  .form-section .user-input {
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .describe .text .content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .describe .text .img {
+    width: 50%;
+  }
+  .describe .text .img img {
+    height: 50%;
+    width: 100%;
+  }
+  .form-section .container {
+    flex-direction: column;
+  }
+  .form-section .container .user-input,
+  .form-section .container .result {
+    width: 100%;
+  }
+}
+/* responsive */

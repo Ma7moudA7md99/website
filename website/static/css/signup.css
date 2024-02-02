@@ -1,0 +1,107 @@
+body {
+  background-color: var(--main-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.disabled-btn {
+  background-color: #006493;
+  cursor: no-drop;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  margin-top: 2%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+.form .logo {
+  width: 100%;
+  margin: 30px 0;
+}
+.form .logo img {
+  width: 100%;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input:focus,
+select:focus {
+  border: 1px solid transparent;
+  outline: 2px solid var(--main-color);
+}
+button {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* button:hover {
+  background-color: #45a049;
+} */
+
+#passwordStrength {
+  margin-top: 8px;
+  font-size: 0.8em;
+}
+/*  Pulse Animation */
+.iconSVGPulse {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 100%;
+}
+svg {
+  height: fit-content;
+}
+.iconSVGPulse .path-pulse {
+  stroke: white;
+  stroke-dasharray: 6423;
+  animation: dashPathPulse 5s linear infinite;
+}
+
+@keyframes dashPathPulse {
+  0% {
+    stroke-dashoffset: 12423;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 426px) {
+  body {
+    overflow: auto;
+  }
+  .iconSVGPulse {
+    display: none;
+  }
+  .form {
+    width: 80%;
+    margin: 30px 0;
+  }
+}

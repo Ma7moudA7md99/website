@@ -24,6 +24,7 @@
   </head>
   <body class="body">
     <header
+      id="header"
       class="navbar"
       data-aos="fade-down"
       data-aos-duration="1000"
@@ -33,27 +34,38 @@
       <div class="container">
         <div class="logo">
           <a href="http://127.0.0.1:8000/">
-            <img src="{% static 'image/logo.png' %}" alt="" />
+            <img src="{% static 'image/logo.png' %}" alt="Medical Care Logo" />
           </a>
         </div>
-        <div class="right">
+        <div class="right" id="right">
           <ul class="links">
-            <li class="nav-item active"><a href="#home">Home</a></li>
+            <li class="nav-item"><a href="index.html">Home</a></li>
             <li class="nav-item"><a href="#services">Services</a></li>
             <li class="nav-item"><a href="#contact">Contact</a></li>
             <li class="nav-item"><a href="#about">About</a></li>
+            <li class="nav-item">
+              <div class="profile">
+                <img src="{% static 'image/profile.jpeg' %}" alt="Profile" />
+              </div>
+            </li>
           </ul>
+        </div>
+        <div class="mobile-icon" id="mobile-icon">
+          <i class="fa-solid fa-bars"></i>
         </div>
       </div>
     </header>
-    <a id="flying-btn" href="" title="Sign In"
+    <span id="flying-btn" title="Sign In"
       ><i class="fa-solid fa-user-plus"></i
-    ></a>
+    ></span>
     {% block content%} {% endblock%}
     <footer>
       <div class="container">
         <div class="logo">
-          <img src="{% static 'image/white logo.png' %}" alt="" />
+          <img
+            src="{% static 'image/white logo.png' %}"
+            alt="White Medical Care Logo"
+          />
         </div>
         <div class="social-media">
           <div class="icons facebook">
@@ -76,5 +88,5 @@
     </footer>
   </body>
   <script src="{% static 'js/all.min.js' %}"></script>
-  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/header.js' %}"></script>
 </html>

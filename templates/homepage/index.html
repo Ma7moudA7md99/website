@@ -1,6 +1,41 @@
 {% extends 'base.html'%} {% load static%} {% block content%}
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-<section class="intro" id="intro">
+<div class="overlay" id="overlay"></div>
+<div class="sign-in" id="sign-in">
+  <div class="exit-icon" id="exit-icon">
+    <i class="fa-solid fa-x"></i>
+  </div>
+  <div class="container">
+    <div
+      class="left"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
+      <img src="{% static 'image/logo.png'%}" alt="" />
+    </div>
+    <div
+      class="right"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
+      <form action="">
+        <input
+          type="email"
+          name=""
+          id="email"
+          placeholder="Email"
+          autocomplete="@gmail.com"
+        />
+        <input type="password" name="" id="password" placeholder="Password" />
+        <button type="submit">Sign In</button>
+      </form>
+      <span>Don't have an account? <a href="signup.html">Sign Up</a></span>
+    </div>
+  </div>
+</div>
+<div class="intro-section" id="intro">
   <div
     class="container aos-init"
     data-aos="zoom-in"
@@ -17,18 +52,18 @@
         <p>Your "HEALTH" is our Responsibility</p>
       </div>
       <div class="img">
-        <img src="{% static 'image/home.png' %}" alt="Home" />
+        <img src="{% static 'image/home.png'%}" alt="Home" />
       </div>
     </div>
   </div>
-</section>
+</div>
 <section class="home" id="home">
   <div class="container">
     <div class="word">
       <h1>Welcome</h1>
     </div>
     <div class="img" data-aos="fade-right">
-      <img src="{% static 'image/together.jpg' %}" alt="" />
+      <img src="{% static 'image/together.jpg'%}" alt="" />
     </div>
     <div class="text" data-aos="fade-left">
       <p>
@@ -38,8 +73,8 @@
       <div class="content">
         <strong>Our Mission</strong>
         <p>
-          Is to provid to you the treatment and stay with until you recover your
-          health 100%
+          Is to provide to you the treatment and stay with until you recover
+          your health 100%
         </p>
       </div>
       <div class="content">
@@ -49,5 +84,253 @@
     </div>
   </div>
 </section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="word">
+      <h1>Services</h1>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/skincancer.jpg' %}" alt="skin cancer" />
+      </div>
+      <div class="text">
+        <h2>Skin Cancer</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          <a href="services.html"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/diabetes.jpg' %}" alt="diabetes" />
+      </div>
+      <div class="text">
+        <h2>Diabetes</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          <a href="">Go To <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/lungcancer.jpg' %}" alt="Lung Cancer" />
+      </div>
+      <div class="text">
+        <h2>Lung Cancer</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          <a href="">Go To <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/virusc.jpg' %}" alt="Virus C" />
+      </div>
+      <div class="text">
+        <h2>Virus C</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          <a href="">Go To <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img
+          src="{% static 'image/terminology.jpg' %}"
+          alt="Medical Terminology"
+        />
+      </div>
+      <div class="text">
+        <h2>Medical Terminology</h2>
+        <p>
+          Here we provide the service of explaining medical terminology for you
+        </p>
+        <div class="service-link term">
+          <a href="terminology.html"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- contact -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="word">
+      <h1>Contact Us</h1>
+    </div>
+    <!-- <div class="contact-box"> -->
+    <div class="contact-left">
+      <h3>Send Your Request</h3>
+      <form>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Name</label>
+            <input type="text" id="name" />
+            <span class="focus"></span>
+          </div>
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="text" id="phone" />
+            <span class="focus"></span>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" />
+            <span class="focus"></span>
+          </div>
+          <div class="input-group">
+            <label>subject</label>
+            <input type="text" id="subject" />
+            <span class="focus"></span>
+          </div>
+        </div>
+
+        <label>Message</label>
+        <textarea rows="5" placeholder="Your Message" id="message"></textarea>
+
+        <button type="submit">SEND</button>
+      </form>
+    </div>
+    <div class="contact-right">
+      <h3>Reach Us</h3>
+      <table>
+        <tr>
+          <td>Email</td>
+          <td>Email@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>+20 102 060 4940</td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>Kafr-Elshekh, Egypt</td>
+        </tr>
+      </table>
+    </div>
+    <!-- </div> -->
+  </div>
+</section>
+<!-- end contact -->
+<!-- team -->
+
+<section class="about-section" id="about">
+  <div class="containerr">
+    <div class="word">
+      <h1>About Us</h1>
+    </div>
+    <div class="team" id="team">
+      <!-- <h2 class="main-title">Team Members</h2> -->
+      <div class="container">
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/dr alaa.jpg' %}" alt="Dr Alaa" />
+            <div class="social">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Dr.Alaa Elaqany</h3>
+            <p>Doctor at KFS</p>
+            <p><i class="fa-solid fa-phone"></i> phone number</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/ramadan1.jpg' %}" alt="Mahmoud Ahmed" />
+            <div class="social">
+              <a href="https://www.facebook.com/Ma7moudA7md99" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.twitter.com/Ma7moudA7md99" target="_blank">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Mahmoud ramadan</h3>
+            <p>
+              Student at KFS <br />
+              team leader <br />
+              front and back developer
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +0201551184624</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/nasser.jpg' %}" alt="Mohamed Nasser" />
+            <div class="social">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Mohamed Nasser</h3>
+            <p>
+              Student at KFS <br />
+              front and back developer <br />
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +201020604940</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/jamil.jpg' %}" alt="Jamil" />
+            <div class="social">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Jamil Isaa</h3>
+            <p>
+              Student at <br />
+              front and back developer <br />
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +234 806 113 3526</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end team -->
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

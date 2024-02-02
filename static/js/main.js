@@ -1,17 +1,26 @@
 // navbar functions
 const navbar = document.querySelector(".navbar");
 const fly_btn = document.getElementById("flying-btn");
+const Large_Tablets = window.matchMedia("(max-width: 1024px)");
+
+if (Large_Tablets) {
+  fly_btn.style.animation = "rotation-show 2s alternate";
+  fly_btn.style.right = "10%";
+}
+// show/hide sign-in menu on click of the button
 window.addEventListener("scroll", function () {
   if (window.scrollY > 0) {
     navbar.classList.add("set-shadow");
-    // fly_btn.classList.add("show-fly-btn");
+    fly_btn.style.animation = "rotation-show 2s alternate";
     fly_btn.style.right = "10%";
   }
-  if (window.screenY < 50) {
-    fly_btn.style.right = "-100%";
-    // fly_btn.classList.remove("show-fly-btn");
-  } else {
-    navbar.classList.remove("set-shadow");
+  if (window.scrollY < 1) {
+    fly_btn.style.animation = "rotation-hide 2s alternate";
+    fly_btn.style.right = "-10%";
+
+    if (window.scrollY === 0) {
+      navbar.classList.remove("set-shadow");
+    }
   }
 });
 
@@ -32,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
   window.addEventListener("scroll", toggleActiveClass);
-  toggleActiveClass();
 });
 
 AOS.init();
