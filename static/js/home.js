@@ -30,10 +30,6 @@ fly_btn.onclick = function () {
     overlay.style.left = "0";
     fly_btn.style.display = "none";
     body.classList.add("sign-in-opened");
-  } else {
-    sign_in.style.left = "-100%";
-    overlay.style.left = "-100%";
-    body.classList.remove("sign-in-opened");
   }
 };
 sign_in_exit.onclick = function () {

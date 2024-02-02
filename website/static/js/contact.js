@@ -1,5 +1,6 @@
 // get input fields
-const inputs = document.getElementsByTagName("input");
+const parent = document.getElementById("contact-left");
+const inputs = parent.getElementsByTagName("input");
 // get spans
 const spans = document.getElementsByClassName("focus");
 
