@@ -131,8 +131,7 @@ section {
   align-content: center;
   align-items: stretch;
 }
-.sign-in .container .right form input,
-.sign-in .container .right form button {
+.sign-in .container .right form input {
   width: 100%;
   margin: 10px 0;
   height: 30px;
@@ -142,19 +141,19 @@ section {
   border: 1px solid var(--main-color);
   border-radius: 10px;
 }
-.sign-in .container .right form button {
+.sign-in .container .right form input[type="submit"] {
   cursor: pointer;
   background-color: var(--main-color);
   color: white;
   font-size: 19px;
   letter-spacing: 3px;
 }
-.sign-in .container .right form button:hover {
+.sign-in .container .right form i#button:hover {
   box-shadow: var(--shadow);
 }
-.sign-in .container .right form input:focus {
+.sign-in .container .right form input:not(#button):focus {
   border: none;
-  outline: 1px solid var(--main-color);
+  /* outline: 1px solid var(--main-color); */
 }
 .sign-in .container .left img {
   width: 100%;
