@@ -62,7 +62,7 @@ signupForm.onmousemove = () => {
   }
 };
 // check if two passwords is same
-repeatPass.addEventListener("input", function () {
+repeatPass.addEventListener("change", function () {
   if (passwordInput.value === repeatPass.value) {
     submit.disabled = false;
     submit.classList.remove("disabled-btn");

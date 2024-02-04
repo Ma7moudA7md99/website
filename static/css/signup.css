@@ -14,18 +14,34 @@ body {
 .form {
   position: relative;
   z-index: 1;
-  margin-top: 2%;
+  margin-top: 4%;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 350px;
+  width: 450px;
+  /* height: 700px; */
 }
 .form .logo {
   width: 100%;
   margin: 30px 0;
 }
 .form .logo img {
+  width: 100%;
+}
+.form-container {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  gap: 4%;
+  margin-bottom: 70px;
+}
+.form-container select {
+  width: 210%;
+}
+.form div {
+  width: 100%;
+}
+.form div input {
   width: 100%;
 }
 label {

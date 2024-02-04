@@ -148,10 +148,10 @@ section {
   font-size: 19px;
   letter-spacing: 3px;
 }
-.sign-in .container .right form input[type="submit"]:hover {
+.sign-in .container .right form i#button:hover {
   box-shadow: var(--shadow);
 }
-.sign-in .container .right form input:not(input[type="submit"]):focus {
+.sign-in .container .right form input:not(#button):focus {
   border: none;
   /* outline: 1px solid var(--main-color); */
 }
