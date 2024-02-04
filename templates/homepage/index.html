@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {% load static%} {% block content%} 
+{% extends 'base.html'%} {% load static%} {% block content%}
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 <!-- The overlay -->
 <div class="overlay" id="overlay"></div>
@@ -22,7 +22,7 @@
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
     >
-      <form method="post">
+      <form method="POST" action="/sign_in">
         {% csrf_token %}
         <input
           type="email"
@@ -37,7 +37,7 @@
           id="password"
           placeholder="Password"
         />
-        <input type="submit" value="Sign In" id="button" />
+        <button type="submit" id="button">Sign in</button>
       </form>
       <span>Don't have an account? <a href="signup.html">Sign Up</a></span>
     </div>
@@ -191,7 +191,7 @@
     <!-- <div class="contact-box"> -->
     <div class="contact-left" id="contact-left">
       <h3>Send Your Request</h3>
-      <form method="post">
+      <form method="post" action="/send_msg">
         {% csrf_token %}
         <!-- <div class="input-row">
           <div class="input-group">
@@ -208,7 +208,7 @@
         <div class="input-row">
           <div class="input-group">
             <label>Email</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email-contact" id="email-" />
             <span class="focus"></span>
           </div>
           <div class="input-group">
@@ -219,7 +219,12 @@
         </div>
 
         <label>Message</label>
-        <textarea rows="5" placeholder="Your Message" name="message" id="message"></textarea>
+        <textarea
+          rows="5"
+          placeholder="Your Message"
+          name="message"
+          id="message"
+        ></textarea>
 
         <button type="submit" name="send_msg">SEND</button>
       </form>
