@@ -1,22 +1,22 @@
 // Get references to various HTML elements using their IDs
 // Reference to the form
-const signupForm = document.getElementById("signupForm");
+const signupForm = document.getElementsByTagName("form");
 // Reference to the first name input field
-const FnameInput = document.getElementById("firstName");
+const FnameInput = signupForm.getElementById("firstName");
 // Reference to the last name input field
-const LnameInput = document.getElementById("lastName");
+const LnameInput = signupForm.getElementById("lastName");
 // Reference to the email input field
-const emailInput = document.getElementById("email");
+const emailInput = signupForm.getElementById("email");
 // Reference to the age input field
-const ageInput = document.getElementById("age");
+const ageInput = signupForm.getElementById("age");
 // Reference to the password input field
-const passwordInput = document.getElementById("password");
+const passwordInput = signupForm.getElementById("password");
 // Reference to the element displaying password strength
-const passwordStrengthDisplay = document.getElementById("passwordStrength");
+const passwordStrengthDisplay = signupForm.getElementById("passwordStrength");
 // Reference to the confirm password input field
-const repeatPass = document.getElementById("confirmPassword");
+const repeatPass = signupForm.getElementById("confirmPassword");
 // Reference to the submit button
-const submit = document.getElementById("submit");
+const submit = signupForm.getElementById("submit");
 
 passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
@@ -66,18 +66,14 @@ repeatPass.addEventListener("input", function () {
   if (passwordInput.value === repeatPass.value) {
     submit.disabled = false;
     submit.classList.remove("disabled-btn");
-  } else if (
-    passwordInput.value === "" ||
-    passwordInput.value !== repeatPass.value
-  ) {
-    if (passwordInput.value !== repeatPass.value) {
-      passwordStrengthDisplay.innerHTML = `Password not Match <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>`;
-    } else if (passwordInput.value === "") {
-      passwordWrongDisplay.innerHTML = ``;
-    }
-    submit.disabled = true;
-    submit.classList.add("disabled-btn");
+    passwordWrongDisplay.innerHTML = ``;
+  } else if (passwordInput.value !== repeatPass.value) {
+    passwordStrengthDisplay.innerHTML = `Password not Match <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>`;
+  } else if (passwordInput.value === "") {
+    passwordWrongDisplay.innerHTML = ``;
   }
+  submit.disabled = true;
+  submit.classList.add("disabled-btn");
 });
 document
   .getElementById("signupForm")

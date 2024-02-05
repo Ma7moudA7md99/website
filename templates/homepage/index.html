@@ -25,22 +25,24 @@
       <form method="POST" action="/sign_in">
         {% csrf_token %}
         <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          autocomplete="@gmail.com"
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+          required
         />
         <input
           type="password"
           name="password"
           id="password"
           placeholder="Password"
+          required
         />
         <button type="submit" id="button">Sign in</button>
       </form>
       <span
-        >Don't have an account? <a href="{% url 'sign_up' %}">Sign Up</a></span
+        >Don't have an account?
+        <a href="{% url 'sign_up_page' %}">Sign Up</a></span
       >
     </div>
   </div>
