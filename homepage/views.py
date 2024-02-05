@@ -66,8 +66,8 @@ def send_msg(request):
     send_mail(
       subject,
       message,
-      email_sender,
-      [settings.EMAIL_HOST_USER],
+      from_email=email_sender,
+      recipient_list=7['nasr66440@gmail.com'],
       fail_silently=False,
     )
 
