@@ -15,8 +15,11 @@ def home(request):
 def sign_up_page(request):
   return render(request, 'homepage/signup.html')
 
+def sign_in_page(request):
+  return render(request, 'homepage/signin.html')
 
-def sign_in(request):
+
+def sign_in_method(request):
   if request.method == 'POST':
     # Get the username and password provided by the user.
     username = request.POST['username']
@@ -25,9 +28,9 @@ def sign_in(request):
 
     if user is not None:
       login (request, user)
-      return redirect('/')
+      return redirect('/', user)
     else:
-      messages.error(request, "Bad Credentials!")
+      render(request, 'homepage/signin.html', authorized=False)
       # return redirect( 'home')
     
   return HttpResponse('wrong')

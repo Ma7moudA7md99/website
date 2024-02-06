@@ -1,0 +1,152 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  overflow: hidden;
+}
+button {
+  cursor: pointer;
+  background-color: var(--main-color);
+  width: 105%;
+  border: none;
+  outline: none;
+  color: #fff;
+  height: 35px;
+  border-radius: 30px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+button:hover {
+  box-shadow: 0px 5px 15px 0px rgba(1, 133, 138, 0.3);
+}
+.sign-in {
+  background-color: white;
+  margin: 10% 0;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+  z-index: 4;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  transition: 2s;
+  padding: 30px 0;
+}
+.sign-in .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+/* sign in */
+.sign-in .container .sign-form form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: stretch;
+}
+.sign-in .container .sign-form div {
+  position: relative;
+}
+.sign-in .container .wrong-info {
+  position: absolute;
+  top: 45%;
+  padding: 0 50px;
+  background-color: rgba(255, 0, 0, 0.3);
+  border: 1px solid red;
+  border-radius: 10px;
+  z-index: 3;
+}
+.sign-in .container .wrong-info p {
+  position: relative;
+}
+.sign-in .container .wrong-info p i {
+  font-size: 30px;
+  color: darkred;
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  transform: translateY(-40%);
+}
+.sign-in .container .sign-form div span {
+  height: 1px;
+  width: 0;
+  background-color: var(--main-color);
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  transition: 0.5s ease-in-out;
+}
+.sign-in .container .sign-form input {
+  width: 100%;
+  margin: 10px 0;
+  height: 30px;
+  font-size: 18px;
+  color: var(--main-color);
+  border: none;
+  border-bottom: 1px solid #777;
+  outline: none;
+}
+.sign-in .container .logo {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid var(--main-color);
+}
+.sign-in .container .logo img {
+  width: 100%;
+}
+/*  Pulse Animation */
+.iconSVGPulse {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 100%;
+}
+svg {
+  height: fit-content;
+}
+.iconSVGPulse .path-pulse {
+  stroke: white;
+  stroke-dasharray: 6423;
+  animation: dashPathPulse 5s linear infinite;
+}
+
+@keyframes dashPathPulse {
+  0% {
+    stroke-dashoffset: 12423;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .wrong-info {
+    top: 43%;
+  }
+}
+@media (max-width: 426px) {
+  .sign-in {
+    width: 90%;
+    margin: 40% 0;
+  }
+  .sign-in .container .wrong-info {
+    top: 40%;
+  }
+}
+@media (max-width: 376px) {
+  .sign-in .container .wrong-info {
+    width: 200px;
+  }
+  .sign-in .container .wrong-info p {
+    padding-left: 20px;
+  }
+}

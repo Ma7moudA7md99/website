@@ -23,21 +23,6 @@ window.addEventListener("scroll", function () {
     fly_btn.style.right = "-10%";
   }
 });
-// show / hide sign in div
-fly_btn.onclick = function () {
-  if (sign_in.style.left === "-100%" || sign_in.style.left === "") {
-    sign_in.style.left = "10%";
-    overlay.style.left = "0";
-    fly_btn.style.display = "none";
-    body.classList.add("sign-in-opened");
-  }
-};
-sign_in_exit.onclick = function () {
-  sign_in.style.left = "-100%";
-  fly_btn.style.display = "block";
-  overlay.style.left = "-100%";
-  body.classList.remove("sign-in-opened");
-};
 
 // enable / disable link in services card
 for (let i = 0; i < cards.length; i++) {

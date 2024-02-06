@@ -62,9 +62,9 @@
       ><i class="fa-solid fa-user-plus"></i
     ></span>
     {% else %}
-    <span id="flying-btn" title="Sign In"
-      ><i class="fa-solid fa-user-plus"></i
-    ></span>
+    <span id="flying-btn" title="Sign In">
+      <a href="{% url 'sign_in' %}"><i class="fa-solid fa-user-plus"></i></a>
+    </span>
     {% endif %}
     <br />
     {% block content%} {% endblock%}
