@@ -33,8 +33,7 @@ def sign_in_method(request):
       render(request, 'homepage/signin.html', authorized=False)
       # return redirect( 'home')
     
-  return HttpResponse('wrong')
-
+  return redirect('sign_in')
 
 def sign_up(request):
   if request.method == 'POST':
