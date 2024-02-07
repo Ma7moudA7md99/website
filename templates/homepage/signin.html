@@ -47,7 +47,9 @@
     <div class="sign-in" id="sign-in">
       <div class="container">
         <div class="logo">
-          <img src="{% static 'image/logo.png' %}" alt="" />
+          <a href="{% url 'home' %}">
+            <img src="{% static 'image/logo.png' %}" alt="" />
+          </a>
         </div>
         {% if authorized %}
         <div class="wrong-info" style="display: none">
@@ -69,7 +71,7 @@
         </div>
         {% endif %}
         <div class="sign-form">
-          <form action="/sign_in_method" method="POST" class="loginForm">
+          <form action="/sign_in" method="POST" class="loginForm">
             {% csrf_token %}
             <div class="username">
               <input

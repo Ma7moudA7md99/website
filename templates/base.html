@@ -39,14 +39,24 @@
         </div>
         <div class="right" id="right">
           <ul class="links">
-            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a href="#home">Home</a></li>
             <li class="nav-item"><a href="#services">Services</a></li>
             <li class="nav-item"><a href="#contact">Contact</a></li>
             <li class="nav-item"><a href="#about">About</a></li>
             {% if user.is_authenticated %}
             <li class="nav-item">
               <div class="profile">
-                <img src="{% static 'image/profile.jpeg' %}" alt="Profile" />
+                <img
+                  src="{% static 'image/profile.jpeg' %}"
+                  alt="Profile photo"
+                  id="profile-icon"
+                  onclick="showProfileList()"
+                />
+                <ul id="profile-items">
+                  <li class="username-li">Mahmoud Ahmed</li>
+                  <li><a href="">View Profile</a></li>
+                  <li><a href="">Log out</a></li>
+                </ul>
               </div>
             </li>
             {% endif %}

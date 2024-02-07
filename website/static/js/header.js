@@ -4,6 +4,10 @@ const header = document.getElementById("header");
 const mobile_icon = document.getElementById("mobile-icon");
 // Get the mobile menu in phones
 const mobile_menu = document.getElementById("right");
+// Get profile image icon
+const profIcon = document.getElementById("profile-icon");
+// Get profile list items
+const profItem = document.getElementById("profile-items");
 // show/hide sign-in menu on click of the button
 window.addEventListener("scroll", function () {
   if (window.scrollY > 0) {
@@ -24,6 +28,9 @@ mobile_icon.onclick = function () {
     mobile_menu.style.display = "none";
   }
 };
-
+// show / hide profile list
+function showProfileList() {
+  profItem.classList.toggle("item-is-active");
+}
 // AOS initialize
 AOS.init();

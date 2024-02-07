@@ -7,19 +7,34 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
 # Create your views here.
+# function to render and load html content for home page
 def home(request):
-  user = User.objects.filter(is_active=True).order_by('username')
-  return render(request,'homepage/index.html',{'user':user})
+  return render(request,'homepage/index.html')
 
+# function to render and load html content for sign up page
+# and it creates a new user too 
+def sign_up(request):
+  if request.method == 'POST':
+    # Get the username and password provided by the user.
+    fname = request.POST['firstName']
+    lname = request.POST['lastName']
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
 
-def sign_up_page(request):
+    newUser = User.objects.create_user(username, email, password)
+    newUser.first_name = fname
+    newUser.last_name = lname
+    newUser.save()
+
+    messages.success(request, 'Your acount has been created')
+    login(request, newUser)
+    return redirect('home')
   return render(request, 'homepage/signup.html')
 
-def sign_in_page(request):
-  return render(request, 'homepage/signin.html')
-
-
-def sign_in_method(request):
+# function to render and load html content for sign in page
+# and it check if the information's from the user is signed or not
+def sign_in(request):
   if request.method == 'POST':
     # Get the username and password provided by the user.
     username = request.POST['username']
@@ -30,33 +45,10 @@ def sign_in_method(request):
       login (request, user)
       return redirect('/', user)
     else:
-      render(request, 'homepage/signin.html', authorized=False)
-      # return redirect( 'home')
-    
-  return HttpResponse('wrong')
+      render(request, 'homepage/signin.html')
+  return render(request, 'homepage/signin.html')
 
-
-def sign_up(request):
-  if request.method == 'POST':
-    # Get the username and password provided by the user.
-    fname = request.POST['firstName']
-    lname = request.POST['lastName']
-    username = request.POST['username']
-    email = request.POST['email']
-    password = request.POST['password']
-    # print(fname, lname, username, email,password)
-    newUser = User.objects.create_user(username, email, password)
-    newUser.first_name = fname
-    newUser.last_name = lname
-
-
-    newUser.save()
-    messages.success(request, 'Your acount has been created')
-    # print(email, password)
-    return render(request ,'homepage/index.html')
-  
-  return HttpResponse('wrong')
-
+# function that send a message from contact section
 def send_msg(request):
   if request.method == 'POST':
     subject = request.POST['subject']
@@ -75,3 +67,7 @@ def send_msg(request):
     )
 
   return render(request,'homepage/index.html')
+
+# function to render skin cancer page
+def skinCancer(request):
+  return render(request,"skin cancer/skin cancer.html")
