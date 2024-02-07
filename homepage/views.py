@@ -70,7 +70,7 @@ def send_msg(request):
       subject,
       message,
       from_email=email_sender,
-      recipient_list=7['nasr66440@gmail.com'],
+      recipient_list=['nasr66440@gmail.com'],
       fail_silently=False,
     )
 
