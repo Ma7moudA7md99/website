@@ -45,36 +45,8 @@ def sign_in(request):
       login (request, user)
       return redirect('/', user)
     else:
-<<<<<<< HEAD
-      render(request, 'homepage/signin.html', authorized=False)
-      # return redirect( 'home')
-    
-  return redirect('sign_in')
-
-def sign_up(request):
-  if request.method == 'POST':
-    # Get the username and password provided by the user.
-    fname = request.POST['firstName']
-    lname = request.POST['lastName']
-    username = request.POST['username']
-    email = request.POST['email']
-    password = request.POST['password']
-    # print(fname, lname, username, email,password)
-    newUser = User.objects.create_user(username, email, password)
-    newUser.first_name = fname
-    newUser.last_name = lname
-
-
-    newUser.save()
-    messages.success(request, 'Your acount has been created')
-    # print(email, password)
-    return render(request ,'homepage/index.html')
-  
-  return HttpResponse('wrong')
-=======
       render(request, 'homepage/signin.html')
   return render(request, 'homepage/signin.html')
->>>>>>> 16e1d5c2c1ba9b5a297f0ab97741c06d2b4cef98
 
 # function that send a message from contact section
 def send_msg(request):
