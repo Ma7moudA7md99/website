@@ -41,6 +41,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", monospace;
+  scroll-behavior: smooth;
 }
 ul li {
   list-style: none;
@@ -125,6 +126,44 @@ header .search i.fa-solid {
 header .mobile-icon {
   display: none;
 }
+/* profile icon */
+header .profile {
+  position: relative;
+}
+header .profile #profile-icon {
+  cursor: pointer;
+}
+header .profile #profile-items {
+  background-color: var(--main-color);
+  color: white;
+  position: absolute;
+  right: 10%;
+  top: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 200px;
+  padding: 0 5px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: 2s transform;
+  transform-origin: top;
+  transform: rotateX(90deg);
+}
+header .profile #profile-items li {
+  width: 250px;
+  padding: 10px 0;
+  border-bottom: 1px solid white;
+  transition: 0.3s;
+}
+header .profile #profile-items li:hover {
+  background-color: white;
+  border-bottom: 1px solid var(--main-color);
+  color: var(--main-color);
+}
+/* profile icon */
 /* flying btn */
 span#flying-btn {
   z-index: 3;
