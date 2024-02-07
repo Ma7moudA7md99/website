@@ -53,7 +53,9 @@
                   onclick="showProfileList()"
                 />
                 <ul id="profile-items">
-                  <li class="username-li">{{ user.username }}</li>
+                  <li class="username-li" style="text-transform: capitalize">
+                    {{ user.first_name }} {{ user.last_name}}
+                  </li>
                   <li><a href="">View Profile</a></li>
                   <li><a href="{% url 'logout' %}">Log out</a></li>
                 </ul>
