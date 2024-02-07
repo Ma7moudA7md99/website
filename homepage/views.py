@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 # Create your views here.
@@ -95,7 +95,10 @@ def send_msg(request):
     )
 
   return render(request,'homepage/index.html')
-
+# function to logout 
+def log_out(request):
+  logout(request)
+  return redirect('home')
 # function to render skin cancer page
 def skinCancer(request):
   return render(request,"skin cancer/skin cancer.html")
