@@ -20,6 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
-    path('Medical_Terminology', include("terminology.urls")),
-    path('Skin_Cancer', include("skincancer.urls")),
+    path('Medical_Terminology/', include("terminology.urls")),
+    path('Skin_Cancer/', include("skincancer.urls")),
 ]
