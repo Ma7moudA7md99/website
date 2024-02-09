@@ -179,14 +179,9 @@
         </div>
       </div>
     </div>
-    <!-- <div class="form">
-          <form>
-            <input type="text" name="name" id="name" />
-          </form>
-        </div> -->
   </div>
 </section>
-<section class="form-section">
+<section class="form-section" id="form-section">
   <div class="container">
     <div
       class="user-input"
@@ -194,7 +189,8 @@
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
     >
-      <form class="analysis" id="analysis">
+      <form class="analysis" id="analysis" method="POST" action="/skinCancer">
+        {% csrf_token %}
         <h1>Enter this information's</h1>
         <div class="fname">
           <input
@@ -237,8 +233,10 @@
             id="uploadImage"
             accept="image/*"
             onchange="displayFilename()"
+            name="uploadImage"
           />
         </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
     <div
@@ -248,7 +246,11 @@
       data-aos-easing="ease-in-out"
     >
       <h1>Result</h1>
-      <p>Your result will be here</p>
+      <p style="text-transform: capitalize">
+        {{ user.first_name }} {{ user.last_name }}
+      </p>
+      <br />
+      <p>{{ result }}</p>
     </div>
   </div>
 </section>
