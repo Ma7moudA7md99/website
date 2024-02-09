@@ -50,7 +50,8 @@ def sign_in(request):
       login (request, user)
       return redirect('/', user)
     else:
-      render(request, 'homepage/signin.html')
+      error_message = "Invalid username or password"
+      render(request, 'homepage/signin.html', {'error_message': error_message})
   return render(request, 'homepage/signin.html')
 
 # function that send a message from contact section
@@ -91,6 +92,7 @@ def skinCancer(request):
       result = model_result_text(model_result)
       return render(request, 'skin cancer/skin cancer.html', {'result': result})
     except Exception as e:
+      traceback.print_exc()
       print(e)
       return render(request, 'skin cancer/skin cancer.html')
   
@@ -99,10 +101,14 @@ def skinCancer(request):
 
 
 def model_result_text(model_result):
-    if model_result < 0.4:
-        result = 'Thank your god you are in good health'
-    elif 0.5 > model_result > 0.4:
-        result = 'Thank your god you are in good health \n but It is best to consult your doctor to ensure your health'
+    percentage = model_result[0] * 100
+    if model_result[0] < 0.4:
+      result = f'Your result is {percentage[0]:.2f}% \n  It seems that you don\'t have Skin Cancer.'
+    elif 0.4 <= model_result[0] < 0.7:
+      result  = f"Your result is {percentage[0]:.2f}% \n The lesion may be benign but it could also be malignant."
     else:
-        result = 'you must consult your doctor'
-    return result
+      result = f"Your result is {percentage[0]:.2f}%\n Based on the results, there might be a possibility of having Skin Cancer.\n Please consult a doctor immediately!"
+    return  result
+
+def medicalTerm(request):
+  return render(request,"terminology/terminology.html")
