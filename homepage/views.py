@@ -85,7 +85,7 @@ def skinCancer(request):
       # with open('static/image/uploads/' + image.name, 'wb+') as destination:
       #     for chunk in image.chunks():
       #           destination.write(chunk)
-      img = cv2.imread("g:\\Big one\\Datasets\\Skin Cancer\\Self Trained model\\Classification Model\\data\\malignant\\36.jpg")
+      img = cv2.imread("E:/graduate/website/website/static/image/36.jpg")
       resize = tf.image.resize(img, (256, 256))
       model_result = model.predict(np.expand_dims(resize / 255, 0))
       result = model_result_text(model_result)
