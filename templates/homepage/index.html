@@ -164,7 +164,7 @@
         </p>
         <div class="service-link term">
           {% if user.is_authenticated %}
-          <a href="services.html"
+          <a href="{% url 'terminology' %}"
             >Go To <i class="fa-solid fa-arrow-right"></i
           ></a>
           {% else %}
