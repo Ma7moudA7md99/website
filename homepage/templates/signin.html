@@ -51,17 +51,17 @@
             <img src="{% static 'image/logo.png' %}" alt="" />
           </a>
         </div>
-        {% if authorized %}
-        <div class="wrong-info" style="display: none">
+        {% if error %}
+        <div class="wrong-info">
           <div class="info-text">
             <p>
-              <i class="fa-solid fa-triangle-exclamation"></i> wrong username or
-              password
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              {{ error }}
             </p>
           </div>
         </div>
         {% else %}
-        <div class="wrong-info">
+        <div class="wrong-info" style="display: none">
           <div class="info-text">
             <p>
               <i class="fa-solid fa-triangle-exclamation"></i> wrong username or
