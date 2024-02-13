@@ -1,22 +1,22 @@
 // Get references to various HTML elements using their IDs
 // Reference to the form
-const signupForm = document.getElementsByTagName("form");
+const signupForm = document.getElementById("signup_Form");
 // Reference to the first name input field
-const FnameInput = signupForm.getElementById("firstName");
+const FnameInput = document.getElementById("firstName");
 // Reference to the last name input field
-const LnameInput = signupForm.getElementById("lastName");
+const LnameInput = document.getElementById("lastName");
 // Reference to the email input field
-const emailInput = signupForm.getElementById("email");
+const emailInput = document.getElementById("email");
 // Reference to the age input field
-const ageInput = signupForm.getElementById("age");
+const ageInput = document.getElementById("age");
 // Reference to the password input field
-const passwordInput = signupForm.getElementById("password");
+const passwordInput = document.getElementById("password");
 // Reference to the element displaying password strength
-const passwordStrengthDisplay = signupForm.getElementById("passwordStrength");
+const passwordStrengthDisplay = document.getElementById("passwordStrength");
 // Reference to the confirm password input field
-const repeatPass = signupForm.getElementById("confirmPassword");
+const repeatPass = document.getElementById("confirmPassword");
 // Reference to the submit button
-const submit = signupForm.getElementById("submit");
+const submit = document.getElementById("submit");
 
 passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
@@ -64,22 +64,17 @@ signupForm.onmousemove = () => {
 // check if two passwords is same
 repeatPass.addEventListener("input", function () {
   if (passwordInput.value === repeatPass.value) {
-    submit.disabled = false;
+    submit.removeAttribute("disabled");
     submit.classList.remove("disabled-btn");
-    passwordWrongDisplay.innerHTML = ``;
+    passwordStrengthDisplay.innerHTML = ``;
   } else if (passwordInput.value !== repeatPass.value) {
-    passwordStrengthDisplay.innerHTML = `Password not Match <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>`;
+    passwordStrengthDisplay.innerHTML = `Password not Match <i class="fa-solid fa-triangle-exclamation" style="color: red;font-size: 1.1em"></i>`;
   } else if (passwordInput.value === "") {
-    passwordWrongDisplay.innerHTML = ``;
+    passwordStrengthDisplay.innerHTML = ``;
+    submit.disabled = true;
+    submit.classList.add("disabled-btn");
   }
-  submit.disabled = true;
-  submit.classList.add("disabled-btn");
 });
-document
-  .getElementById("signupForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-  });
 
 fetch("https://restcountries.com/v2/all")
   .then((response) => response.json())

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <!-- main css file -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <title>Medical Care | {% block title %} {% endblock %}</title>
+  </head>
+  <body class="body">
+    <header
+      id="header"
+      class="navbar"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+      data-aos-anchor=".body"
+      data-aos-easing="ease-in-out"
+    >
+      <div class="container">
+        <div class="logo">
+          <a href="{% url 'home' %}">
+            <img src="{% static 'image/logo.png' %}" alt="Medical Care Logo" />
+          </a>
+        </div>
+        <div class="right" id="right">
+          <ul class="links">
+            <li class="nav-item"><a href="{% url 'home' %}#home">Home</a></li>
+            <li class="nav-item">
+              <a href="{% url 'home' %}#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'home' %}#contact">Contact</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'home' %}#about">About</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <div class="profile">
+                <img
+                  src="{{ user.profile.image.url }}"
+                  alt="Profile photo"
+                  id="profile-icon"
+                  onclick="showProfileList()"
+                />
+                <ul id="profile-items">
+                  <li class="username-li" style="text-transform: capitalize">
+                    {{ user.first_name }} {{ user.last_name}}
+                  </li>
+                  <li><a href="{% url 'profile' %}">View Profile</a></li>
+                  <li><a href="{% url 'logout' %}">Log out</a></li>
+                </ul>
+              </div>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="mobile-icon" id="mobile-icon">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </header>
+    {% if user.is_authenticated %}
+    <span id="flying-btn" title="Sign In" style="display: none"
+      ><i class="fa-solid fa-user-plus"></i
+    ></span>
+    {% else %}
+    <span id="flying-btn" title="Sign In">
+      <a href="{% url 'sign_in' %}"><i class="fa-solid fa-user-plus"></i></a>
+    </span>
+    {% endif %}
+    <br />
+    {% block content%} {% endblock%}
+    <footer>
+      <div class="container">
+        <div class="logo">
+          <img
+            src="{% static 'image/white logo.png' %}"
+            alt="White Medical Care Logo"
+          />
+        </div>
+        <div class="social-media">
+          <div class="icons facebook">
+            <i class="fa-brands fa-facebook"></i>
+          </div>
+          <div class="icons twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </div>
+          <div class="icons youtube">
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+          <div class="icons insatgram">
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          <span class="rights">
+            <p>all rights reserved @2024</p>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="{% static 'js/all.min.js' %}"></script>
+  <script src="{% static 'js/header.js' %}"></script>
+</html>

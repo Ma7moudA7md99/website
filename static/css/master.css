@@ -135,6 +135,7 @@ header .profile {
 }
 header .profile #profile-icon {
   cursor: pointer;
+  border-radius: 50%;
 }
 header .profile #profile-items {
   background-color: var(--main-color);

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <!-- master css file -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}" />
+    <!-- main css file -->
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <title>Medical Care | Log in</title>
+  </head>
+  <div class="iconSVGPulse">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      id="Layer_1"
+      viewBox="0 0 5184 3844.17"
+    >
+      <path
+        class="path-pulse"
+        d="M472.68,2183.89h678.94c3.36,0,6.34-2.87,7.41-7.14l40.53-160.91c2.68-10.61,14.23-8.97,15.19,2.16l30.25,352.19c.99,11.57,13.2,12.68,15.35,1.4l51.88-272.25c1.69-8.83,10.4-10.78,14.13-3.15l40.54,82.96c1.45,2.95,3.91,4.74,6.55,4.74h92.41c3.66,0,6.83-3.41,7.63-8.19l76.04-452.87c1.97-11.69,14.66-10.54,15.43,1.39l53.31,824.56c.79,12.22,13.9,13.01,15.49,.93l66.68-504.25c1.55-11.69,14.13-11.48,15.44,.27l14.52,129.22c.58,5.13,3.87,8.93,7.74,8.93h513.59c3.32,0,6.29-2.81,7.39-7l45.1-171.76c2.66-10.09,13.55-9.01,15.07,1.49l51.17,354.1c1.62,11.17,13.47,11.39,15.32,.29l49.66-298.57c1.71-10.3,12.41-11.15,15.02-1.19l30.26,115.63c1.1,4.2,4.06,7.02,7.39,7.02h125.72c3.82,0,7.07-3.7,7.71-8.75l45.45-361.07c1.51-11.95,14.4-11.53,15.48,.5l58.23,649.83c1.04,11.64,13.38,12.56,15.38,1.14l83.84-478.87c1.95-11.17,13.94-10.63,15.33,.69l35.02,283.79c1.23,9.97,11.25,12.07,14.68,3.06l32.28-84.6c1.34-3.51,4.03-5.71,6.97-5.71h425.48c3.55,0,6.65-3.21,7.56-7.81l29.65-150.4c2.09-10.62,13.42-10.33,15.2,.4l65.6,394.9c1.81,10.86,13.32,10.99,15.25,.16l72.68-407.51c1.94-10.92,13.61-10.65,15.27,.35l40.26,266.12c1.6,10.56,12.61,11.41,15.11,1.16l21.96-90.15c1.05-4.32,4.05-7.24,7.44-7.24h133.92c3.78,0,7.01-3.61,7.7-8.59l58.47-424.26c1.66-11.99,14.66-11.19,15.49,.95l51.88,760.5c.82,11.97,13.57,12.99,15.44,1.23l78.72-493.98c1.74-10.95,13.34-11.12,15.26-.23l27.61,156.3c.84,4.73,3.99,8.08,7.61,8.08h550.56"
+        style="
+          fill: var(--main-color);
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-width: 29px;
+        "
+      ></path>
+    </svg>
+  </div>
+  <body>
+    <div class="sign-in" id="sign-in">
+      <div class="container">
+        <div class="logo">
+          <a href="{% url 'home' %}">
+            <img src="{% static 'image/logo.png' %}" alt="" />
+          </a>
+        </div>
+        {% if authorized %}
+        <div class="wrong-info" style="display: none">
+          <div class="info-text">
+            <p>
+              <i class="fa-solid fa-triangle-exclamation"></i> wrong username or
+              password
+            </p>
+          </div>
+        </div>
+        {% else %}
+        <div class="wrong-info">
+          <div class="info-text">
+            <p>
+              <i class="fa-solid fa-triangle-exclamation"></i> wrong username or
+              password
+            </p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="sign-form">
+          <form action="" method="POST" class="loginForm">
+            {% csrf_token %}
+            <div class="username">
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                required
+              />
+              <span></span>
+            </div>
+            <div class="password">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <span></span>
+            </div>
+            <button type="submit">Log In</button>
+          </form>
+          <span
+            >Don't have an account?
+            <a href="{% url 'sign_up' %}">Sign Up</a></span
+          >
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/signin.js' %}"></script>
+  </body>
+</html>

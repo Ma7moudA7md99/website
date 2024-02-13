@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
-    'terminology.apps.TerminologyConfig',
-    'skincancer.apps.SkincancerConfig',
+    'userProfile.apps.UserprofileConfig',
+    'services.apps.ServicesConfig',
+    'django_countries',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +136,7 @@ EMAIL_HOST_USER = 'wa7wa776@gmail.com'
 EMAIL_HOST_PASSWORD = 'fsfn npgq snib ztgv'
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

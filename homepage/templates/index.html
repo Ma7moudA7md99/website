@@ -1,0 +1,375 @@
+{% extends 'base.html'%} {% load static%} {% block title %}Home{% endblock %}
+<br />
+{% block content%}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<!-- The overlay -->
+<div class="overlay" id="overlay"></div>
+
+<div class="intro-section" id="intro">
+  <div
+    class="container aos-init"
+    data-aos="zoom-in"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+  >
+    <div class="content">
+      <div
+        class="text aos-animate"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+      >
+        <h1>MEDICAL</h1>
+        <p>Your "HEALTH" is our Responsibility</p>
+      </div>
+      <div class="img">
+        <img src="{% static 'image/home.png'%}" alt="Home" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="home" id="home">
+  <div class="container">
+    <div class="word">
+      <h1>Welcome</h1>
+    </div>
+    <div class="img" data-aos="fade-right">
+      <img src="{% static 'image/together.jpg'%}" alt="" />
+    </div>
+    <div class="text" data-aos="fade-left">
+      <p>
+        Our focus is on your overall well being and helping you achieve optimal
+        health and esthetics.
+      </p>
+      <div class="content">
+        <strong>Our Mission</strong>
+        <p>
+          Is to provide to you the treatment and stay with until you recover
+          your health 100%
+        </p>
+      </div>
+      <div class="content">
+        <strong>Professionals in our Clinic</strong>
+        <p>Has provided a high class facility for the treatment</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="word">
+      <h1>Services</h1>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/skincancer.jpg' %}" alt="skin cancer" />
+      </div>
+      <div class="text">
+        <h2>Skin Cancer</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          {% if user.is_authenticated %}
+          <a href="{% url 'skin cancer' %}"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% else %}
+          <a href="{% url 'sign_in' %}"
+            >Sign in first <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/diabetes.jpg' %}" alt="diabetes" />
+      </div>
+      <div class="text">
+        <h2>Diabetes</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          {% if user.is_authenticated %}
+          <a href="services.html"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% else %}
+          <a href="{% url 'sign_in' %}"
+            >Sign in first <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/lungcancer.jpg' %}" alt="Lung Cancer" />
+      </div>
+      <div class="text">
+        <h2>Lung Cancer</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          {% if user.is_authenticated %}
+          <a href="services.html"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% else %}
+          <a href="{% url 'sign_in' %}"
+            >Sign in first <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img src="{% static 'image/virusc.jpg' %}" alt="Virus C" />
+      </div>
+      <div class="text">
+        <h2>Virus C</h2>
+        <p>
+          Here we provide the service of reading medical tests to find out
+          whether you suffer from a certain disease or not
+        </p>
+        <div class="service-link">
+          {% if user.is_authenticated %}
+          <a href="services.html"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% else %}
+          <a href="{% url 'sign_in' %}"
+            >Sign in first <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img
+          src="{% static 'image/terminology.jpg' %}"
+          alt="Medical Terminology"
+        />
+      </div>
+      <div class="text">
+        <h2>Medical Terminology</h2>
+        <p>
+          Here we provide the service of explaining medical terminology for you
+        </p>
+        <div class="service-link term">
+          {% if user.is_authenticated %}
+          <a href="{% url 'medical terminology' %}"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% else %}
+          <a href="{% url 'sign_in' %}"
+            >Sign in first <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="img">
+        <img
+          src="{% static 'image/terminology.jpg' %}"
+          alt="Medical Terminology"
+        />
+      </div>
+      <div class="text">
+        <h2>Medical Terminology</h2>
+        <p>
+          Here we provide the service of explaining medical terminology for you
+        </p>
+        <div class="service-link term">
+          {% if user.is_authenticated %}
+          <a href="{% url 'medical terminology' %}"
+            >Go To <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% else %}
+          <a href="{% url 'sign_in' %}"
+            >Sign in first <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="word">
+      <h1>Contact Us</h1>
+    </div>
+    <!-- <div class="contact-box"> -->
+    <div class="contact-left" id="contact-left">
+      <h3>Send Your Request</h3>
+      <form method="post" action="/send_msg">
+        {% csrf_token %}
+        <!-- <div class="input-row">
+          <div class="input-group">
+            <label>Name</label>
+            <input type="text" id="name" />
+            <span class="focus"></span>
+          </div>
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="text" id="phone" />
+            <span class="focus"></span>
+          </div>
+        </div> -->
+        <div class="input-row">
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email-contact" id="email-" />
+            <span class="focus"></span>
+          </div>
+          <div class="input-group">
+            <label>Subject</label>
+            <input type="text" name="subject" id="subject" />
+            <span class="focus"></span>
+          </div>
+        </div>
+
+        <label>Message</label>
+        <textarea
+          rows="5"
+          placeholder="Your Message"
+          name="message"
+          id="message"
+        ></textarea>
+
+        <button type="submit" name="send_msg">SEND</button>
+      </form>
+    </div>
+    <div class="contact-right">
+      <h3>Reach Us</h3>
+      <table>
+        <tr>
+          <td>Email</td>
+          <td>Email@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>+20 102 060 4940</td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>Kafr-Elshekh, Egypt</td>
+        </tr>
+      </table>
+    </div>
+    <!-- </div> -->
+  </div>
+</section>
+<!-- end contact -->
+<!-- team -->
+
+<section class="about-section" id="about">
+  <div class="containerr">
+    <div class="word">
+      <h1>About Us</h1>
+    </div>
+    <div class="team" id="team">
+      <!-- <h2 class="main-title">Team Members</h2> -->
+      <div class="container">
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/dr alaa.jpg' %}" alt="Dr Alaa" />
+            <div class="social">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Dr.Alaa Elaqany</h3>
+            <p>Doctor at KFS</p>
+            <p><i class="fa-solid fa-phone"></i> phone number</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/ramadan1.jpg' %}" alt="Mahmoud Ahmed" />
+            <div class="social">
+              <a href="https://www.facebook.com/Ma7moudA7md99" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.twitter.com/Ma7moudA7md99" target="_blank">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Mahmoud ramadan</h3>
+            <p>
+              Student at KFS <br />
+              team leader <br />
+              front and back developer
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +0201551184624</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/nasser.jpg' %}" alt="Mohamed Nasser" />
+            <div class="social">
+              <a href="https://www.facebook.com/profile.php?id=100020581831790">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Mohamed Nasser</h3>
+            <p>
+              Student at KFS <br />
+              front and back developer <br />
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +201020604940</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="data">
+            <img src="{% static 'image/jamil.jpg' %}" alt="Jamil" />
+            <div class="social">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Jamil Isaa</h3>
+            <p>
+              Student at <br />
+              front and back developer <br />
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +234 806 113 3526</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end team -->
+<script src="{% static 'js/home.js' %}"></script>
+<script src="{% static 'js/contact.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,122 @@
+/* classes */
+.d-none {
+  display: none;
+}
+/* classes */
+* {
+  transition: 1s ease-in-out;
+}
+section {
+  margin: 0 30px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 10%;
+  padding: 100px 0;
+  justify-content: space-between;
+  align-items: start;
+  justify-items: center;
+}
+.form-updating {
+  width: 70%;
+}
+.profile-info {
+  transform: translateX(30px);
+  background-color: var(--main-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+.profile-info .container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.profile-info .img {
+  width: 100%;
+}
+.profile-info img {
+  border-radius: 50%;
+  border: 1px solid var(--main-color);
+  width: 100%;
+}
+.profile-info .user-name h1 {
+  font-size: 2em;
+  width: 100%;
+}
+.form-updating {
+  position: relative;
+  border: 1px solid var(--main-color);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  padding-bottom: 30px;
+}
+.form-updating .enable-icon,
+.form-updating .cancel-icon {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 9px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+}
+.form-updating .cancel-icon {
+  display: none;
+  transform: translateY(-3px);
+}
+.form-updating div svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+.form-updating .container {
+  flex-direction: column;
+  color: var(--main-color);
+}
+.form-updating .container input,
+.form-updating .container select {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 5px;
+  outline: none;
+  font-size: 1.1em;
+  letter-spacing: 3px;
+  transform: translateX(150px);
+  width: calc(100% - 160px);
+  color: black;
+  transition: inherit;
+}
+.form-updating .container select {
+  width: calc(100% - 148.5px);
+}
+.form-updating .container input[type="file"] {
+  transform: translateX(80px);
+  cursor: pointer;
+}
+.form-updating .container form a {
+  display: none;
+}
+.form-updating .container form p {
+  position: relative;
+  padding: 10px 0;
+}
+.form-updating .container form p label {
+  font-size: 1.1em;
+  position: absolute;
+  top: -15px;
+}
+.form-updating .container form button {
+  width: 100%;
+  padding: 7px 0;
+  color: white;
+  background-color: var(--main-color);
+  letter-spacing: 3px;
+  font-size: 1.3em;
+  border: none;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
