@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .disabled-btn {
   background-color: #006493;
@@ -35,8 +35,10 @@ body {
   gap: 4%;
   margin-bottom: 70px;
 }
-.form-container select {
+.form-container select#country {
   width: 210%;
+  z-index: 1;
+  position: relative;
 }
 .form div {
   width: 100%;

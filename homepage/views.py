@@ -30,14 +30,25 @@ def sign_up(request):
     email = request.POST['email']
     age = request.POST['age']
     password = request.POST['password']
-
-    newUser = User.objects.create_user(username, email, password)
-    newUser.first_name = fname
-    newUser.last_name = lname
-    newUser.save()
-    profile.objects.create(user=newUser, age=age, gender=gender, country=country).save()
-    login(request, newUser)
-    return redirect('home')
+    # checks if the username is used before or not
+    if User.objects.filter(username=username).exists():
+      messages.error(request, 'Username is already taken !!')
+      return render(request,'signUp.html')
+    # checks if the email is used before or not
+    elif User.objects.filter(email=email).exists():
+      messages.error(request, 'This email is used before')
+      return render(request,'signUp.html')
+    elif len(username) < 7:
+      messages.error(request, 'Username must be bigger than 7 characters')
+      return render(request,'signUp.html')
+    else:
+      newUser = User.objects.create_user(username, email, password)
+      newUser.first_name = fname
+      newUser.last_name = lname
+      newUser.save()
+      profile.objects.create(user=newUser, age=age, gender=gender, country=country).save()
+      login(request, newUser)
+      return redirect('home')
   return render(request, 'signup.html')
 
 # function to render and load html content for sign in page
@@ -53,7 +64,7 @@ def sign_in(request):
       login (request, user)
       return redirect('/', user)
     else:
-      print(user)
+      messages.error(request, 'Wrong username or password')
       render(request, 'signin.html')
   return render(request, 'signin.html')
 

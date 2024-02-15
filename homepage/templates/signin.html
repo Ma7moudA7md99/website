@@ -51,16 +51,17 @@
             <img src="{% static 'image/logo.png' %}" alt="" />
           </a>
         </div>
-        {% if error %}
+        {% for message in messages %}
         <div class="wrong-info">
           <div class="info-text">
             <p>
               <i class="fa-solid fa-triangle-exclamation"></i>
-              {{ error }}
+              {{ message }}
             </p>
           </div>
         </div>
-        {% else %}
+        {% endfor %}
+        <!-- 
         <div class="wrong-info" style="display: none">
           <div class="info-text">
             <p>
@@ -68,8 +69,8 @@
               password
             </p>
           </div>
-        </div>
-        {% endif %}
+        </div> -->
+
         <div class="sign-form">
           <form action="" method="POST" class="loginForm">
             {% csrf_token %}

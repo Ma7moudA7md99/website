@@ -10,6 +10,7 @@ section {
   margin: 0 30px;
   display: grid;
   grid-template-columns: 30% 70%;
+  grid-template-rows: 30% 70%;
   gap: 10%;
   padding: 100px 0;
   justify-content: space-between;
@@ -20,6 +21,7 @@ section {
   width: 70%;
 }
 .profile-info {
+  width: 100%;
   transform: translateX(30px);
   background-color: var(--main-color);
   border-radius: 10px;
@@ -119,4 +121,14 @@ section {
   border-radius: 30px;
   box-shadow: var(--shadow);
   cursor: pointer;
+}
+@media (max-width: 426px) {
+  section {
+    grid-template-columns: none;
+    /* grid-template-rows: 30% 70%; */
+  }
+  .form-updating {
+    width: 100%;
+    margin-bottom: 100px;
+  }
 }

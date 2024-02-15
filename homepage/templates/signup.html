@@ -34,7 +34,18 @@
           ><img src="{% static 'image/logo.png' %}" alt=""
         /></a>
       </div>
+      {% for message in messages %}
+      <div class="wrong-info" style="text-align: center">
+        <div class="info-text">
+          <p>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{ message }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
       <form id="signup_Form" method="POST" action="">
+        {% for message in message %} {% csrf_token %} {% endfor %} <br />
         {% csrf_token %}
         <div class="form-container">
           <div class="firstname-div">
@@ -64,7 +75,10 @@
 
           <div class="gender">
             <label for="gender">Gender:</label>
-            <input type="text" id="gender" name="gender" required />
+            <select name="gender" id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
           </div>
 
           <div class="country-div">
