@@ -166,7 +166,6 @@
         </p>
         <div class="service-link term">
           {% if user.is_authenticated %}
-<<<<<<< HEAD:homepage/templates/index.html
           <a href="{% url 'medical terminology' %}"
             >Go To <i class="fa-solid fa-arrow-right"></i
           ></a>
@@ -180,22 +179,17 @@
     </div>
     <div class="card">
       <div class="img">
-        <img
-          src="{% static 'image/terminology.jpg' %}"
-          alt="Medical Terminology"
-        />
+        <img src="{% static 'image/doctor.jpg' %}" alt="Doctor" />
       </div>
       <div class="text">
-        <h2>Medical Terminology</h2>
+        <h2>Doctor's</h2>
         <p>
-          Here we provide the service of explaining medical terminology for you
+          We will help you choose, review, and know the evaluation of top
+          doctors in all specialties
         </p>
-        <div class="service-link term">
+        <div class="service-link doctor">
           {% if user.is_authenticated %}
-          <a href="{% url 'medical terminology' %}"
-=======
-          <a href="{% url 'terminology' %}"
->>>>>>> b03eab53897df4c3caffcc06b6619cf61e1c0a6a:templates/homepage/index.html
+          <a href="{% url 'medical terminology'%}"
             >Go To <i class="fa-solid fa-arrow-right"></i
           ></a>
           {% else %}

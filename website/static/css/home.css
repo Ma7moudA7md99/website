@@ -190,7 +190,7 @@ section {
   border-radius: inherit;
   background-color: white;
   height: 350px;
-  transform: translateY(-35%);
+  transform: translateY(-36%);
   transition: 1s ease-in-out;
   z-index: 1;
 }
@@ -228,6 +228,9 @@ section {
 }
 .services .container .card .text .service-link.term {
   transform: translateY(5%);
+}
+.services .container .card .text .service-link.doctor {
+  transform: translateY(152%);
 }
 .services .container .card:hover .text {
   height: 20%;
@@ -508,7 +511,7 @@ tr td {
   position: absolute;
   right: 0;
   top: 0;
-  height: 105%;
+  height: 100%;
   border-radius: 10px;
   transition: var(--main-transition);
 }

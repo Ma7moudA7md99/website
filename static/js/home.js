@@ -2,12 +2,6 @@
 const body = document.getElementById("body");
 // Get the flying-btn button
 const fly_btn = document.getElementById("flying-btn");
-// Get the sign-in div
-const sign_in = document.getElementById("sign-in");
-// Get the overlay div
-const overlay = document.getElementById("overlay");
-// Get the sign-in-exit icon
-const sign_in_exit = document.getElementById("exit-icon");
 // get services cards
 const cards = document.getElementsByClassName("card");
 // get links inside the cards
@@ -27,11 +21,11 @@ window.addEventListener("scroll", function () {
 // enable / disable link in services card
 for (let i = 0; i < cards.length; i++) {
   setTimeout(() => {
-    cards[i].addEventListener("mouseover", () => {
+    cards[i].addEventListener("onmouseenter", () => {
       cardLinks[i].style.visibility = "visible";
       cardLinks[i].style.opacity = "1";
     });
-    cards[i].addEventListener("mouseout", () => {
+    cards[i].addEventListener("onmouseleave", () => {
       cardLinks[i].style.visibility = "hidden";
       cardLinks[i].style.opacity = "0";
     });

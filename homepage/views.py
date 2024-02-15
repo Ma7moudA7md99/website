@@ -53,15 +53,9 @@ def sign_in(request):
       login (request, user)
       return redirect('/', user)
     else:
-<<<<<<< HEAD
       print(user)
       render(request, 'signin.html')
   return render(request, 'signin.html')
-=======
-      error_message = "Invalid username or password"
-      render(request, 'homepage/signin.html', {'error_message': error_message})
-  return render(request, 'homepage/signin.html')
->>>>>>> b03eab53897df4c3caffcc06b6619cf61e1c0a6a
 
 # function that send a message from contact section
 def send_msg(request):
@@ -87,40 +81,3 @@ def log_out(request):
   logout(request)
   return redirect('home')
 # function to render skin cancer page
-<<<<<<< HEAD
-=======
-def skinCancer(request):
-  if request.method == "POST":
-    try:
-      model = load_model('static/models/skinCancer.h5')
-      # image = request.FILES['uploadImage']
-      # with open('static/image/uploads/' + image.name, 'wb+') as destination:
-      #     for chunk in image.chunks():
-      #           destination.write(chunk)
-      img = cv2.imread("E:/graduate/website/website/static/image/36.jpg")
-      resize = tf.image.resize(img, (256, 256))
-      model_result = model.predict(np.expand_dims(resize / 255, 0))
-      result = model_result_text(model_result)
-      return render(request, 'skin cancer/skin cancer.html', {'result': result})
-    except Exception as e:
-      traceback.print_exc()
-      print(e)
-      return render(request, 'skin cancer/skin cancer.html')
-  
-
-  return render(request, 'skin cancer/skin cancer.html')
-
-
-def model_result_text(model_result):
-    percentage = model_result[0] * 100
-    if model_result[0] < 0.4:
-      result = f'Your result is {percentage[0]:.2f}% \n  It seems that you don\'t have Skin Cancer.'
-    elif 0.4 <= model_result[0] < 0.7:
-      result  = f"Your result is {percentage[0]:.2f}% \n The lesion may be benign but it could also be malignant."
-    else:
-      result = f"Your result is {percentage[0]:.2f}%\n Based on the results, there might be a possibility of having Skin Cancer.\n Please consult a doctor immediately!"
-    return  result
-
-def medicalTerm(request):
-  return render(request,"terminology/terminology.html")
->>>>>>> b03eab53897df4c3caffcc06b6619cf61e1c0a6a
