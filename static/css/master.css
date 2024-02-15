@@ -282,6 +282,9 @@ footer .social-media span.rights {
     transform: translateY(0);
     width: 160px;
   }
+  header .right .profile ul {
+    padding: 10px 30px;
+  }
   header .right ul li {
     padding: 10px 0;
     border-bottom: 1px solid var(--main-color);

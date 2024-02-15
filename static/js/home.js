@@ -21,11 +21,11 @@ window.addEventListener("scroll", function () {
 // enable / disable link in services card
 for (let i = 0; i < cards.length; i++) {
   setTimeout(() => {
-    cards[i].addEventListener("mouseenter", () => {
+    cards[i].addEventListener("onmousemove", () => {
       cardLinks[i].style.visibility = "visible";
       cardLinks[i].style.opacity = "1";
     });
-    cards[i].addEventListener("mouseleave", () => {
+    cards[i].addEventListener("onmouseout", () => {
       cardLinks[i].style.visibility = "hidden";
       cardLinks[i].style.opacity = "0";
     });
