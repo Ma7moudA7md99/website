@@ -20,7 +20,7 @@ class profile(models.Model):
     country = models.CharField(max_length = 30,choices=all_countries.items(), default='Eg')
     email = models.EmailField(unique=True)
     age = models.PositiveIntegerField(null=True)
-    image = models.ImageField(default='profile_pics/default.jpg', upload_to='profile_pics/')
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics/')
     
 
     def __str__(self):

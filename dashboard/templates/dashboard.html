@@ -1,0 +1,51 @@
+{% extends 'base.html' %} <br />
+{% block title %} Dashboard {% endblock %} <br />
+{% load static %} <br />
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<section class="doctors">
+  <div class="container">
+    <div class="table">
+      <table>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Specialization</th>
+          <th>Rating</th>
+          <th>Phone</th>
+          <th>Image</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+        {% for doctor in doctors %}
+        <tr>
+          <td>{{ doctor.id }}</td>
+          <td>{{ doctor.name }}</td>
+          <td>{{ doctor.specialization}}</td>
+          <td>{{ doctor.rating }}/ 10</td>
+          <td>{{ doctor.cellphone }}</td>
+          <td>
+            <img src="{{ doctor.doctor_image.url }}" alt="{{ doctor.name }}" />
+          </td>
+          <td>{{ doctor.address }}</td>
+          {% if user.is_superuser %}
+          <td>
+            <a href="" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="{% url 'update doctor' doctor.id %}" class="modify"
+              ><i class="fa-solid fa-pen"></i>
+            </a>
+          </td>
+          {% else %}
+          <td>
+            <a href="{% url 'update doctor' doctor.id %}" class="modify"
+              ><i class="fa-solid fa-pen"></i>
+            </a>
+          </td>
+        </tr>
+        {% endif %} {% endfor %}
+      </table>
+    </div>
+    <a href="{% url 'add doctor' %}">Add</a>
+  </div>
+</section>
+{% endblock %}

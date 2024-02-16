@@ -1,0 +1,18 @@
+{% extends 'base.html' %} <br />
+{% block title %} Dashboard {% endblock %} <br />
+{% load static %} <br />
+{% block content %}
+<section class="edit" style="padding: 100px 0">
+  <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} <br />
+      {% for message in messages %}
+      <h1>{{message}}</h1>
+      {% endfor %}
+      <br />
+      {{ form.as_p }} <br />
+      <button type="submit">{{ btn_title}}</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -91,4 +91,3 @@ def send_msg(request):
 def log_out(request):
   logout(request)
   return redirect('home')
-# function to render skin cancer page

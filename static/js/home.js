@@ -31,5 +31,20 @@ for (let i = 0; i < cards.length; i++) {
     });
   }, 1600);
 }
+if (window.innerWidth <= 425) {
+  for (let i = 0; i < cards.length; i++) {
+    if (i % 2 === 0) {
+      cards[i].setAttribute(
+        { "data-aos": "fade-left" },
+        { "data-aos-duration": "800" }
+      );
+    } else {
+      cards[i].setAttribute(
+        { "data-aos": "fade-right" },
+        { "data-aos-duration": "800" }
+      );
+    }
+  }
+}
 // AOS initialize
 AOS.init();

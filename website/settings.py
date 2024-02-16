@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'userProfile.apps.UserprofileConfig',
     'services.apps.ServicesConfig',
+    'dashboard.apps.DashboardConfig',
     'django_countries',
     'django.contrib.admin',
     'django.contrib.auth',
