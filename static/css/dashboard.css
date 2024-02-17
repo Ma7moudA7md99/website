@@ -1,32 +1,42 @@
-section.doctors {
-  width: 100%;
+section {
   padding: 100px 0;
   margin: 0 auto;
+  position: relative;
 }
-section.doctors .table {
+section h1 {
+  text-align: center;
+  margin: 30px 0;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+section .table {
+  width: 100%;
   border: 1px solid var(--main-color);
   border-radius: 10px;
   padding: 0 30px;
   text-align: center;
 }
-section.doctors .table tr th {
+section .table tr th {
   border-bottom: 1px solid var(--main-color);
   color: var(--main-color);
   padding: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
-section.doctors .table tr td {
+section .table tr th:not(:first-of-type) {
+  width: calc(100% / 8);
+}
+section .table tr td {
   border-bottom: 1px solid #777;
   padding: 10px;
 }
-section.doctors .table tr td img {
+section .table tr td img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   padding: 0 30px;
 }
-section.doctors .table tr td button {
+section .table tr td button {
   padding: 5px 10px;
   margin: 0 3px;
   border: none;
@@ -35,9 +45,23 @@ section.doctors .table tr td button {
   font-size: 20px;
 }
 
-section.doctors .table tr td .delete {
+section .table tr td .delete {
   color: red;
 }
-section.doctors .table tr td .modify {
+section .table tr td .modify {
   color: blue;
+}
+section.doctors #addDoctor {
+  position: absolute;
+  top: 90px;
+  right: 10%;
+  font-size: 20px;
+  background-color: var(--main-color);
+  color: white;
+  padding: 5px 10px;
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
 }

@@ -4,6 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
 <section class="doctors">
+  <h1>Doctor List</h1>
   <div class="container">
     <div class="table">
       <table>
@@ -17,9 +18,11 @@
           <th>Address</th>
           <th>Action</th>
         </tr>
+        {% if doctors %}
+        <br />
         {% for doctor in doctors %}
         <tr>
-          <td>{{ doctor.id }}</td>
+          <td>{{ forloop.counter }}</td>
           <td>{{ doctor.name }}</td>
           <td>{{ doctor.specialization}}</td>
           <td>{{ doctor.rating }}/ 10</td>
@@ -30,7 +33,9 @@
           <td>{{ doctor.address }}</td>
           {% if user.is_superuser %}
           <td>
-            <a href="" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="{% url 'delete' doctor.id %}" class="delete"
+              ><i class="fa-solid fa-trash-can"></i
+            ></a>
             <a href="{% url 'update doctor' doctor.id %}" class="modify"
               ><i class="fa-solid fa-pen"></i>
             </a>
@@ -42,10 +47,66 @@
             </a>
           </td>
         </tr>
-        {% endif %} {% endfor %}
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td>No Doctors Found!</td>
+        </tr>
+        {% endif %}
       </table>
     </div>
-    <a href="{% url 'add doctor' %}">Add</a>
+    <a href="{% url 'add doctor' %}" id="addDoctor">Add</a>
   </div>
 </section>
-{% endblock %}
+{% if user.is_superuser %}
+<section class="users">
+  <h1>Users List</h1>
+  <div class="container">
+    <div class="table">
+      <table>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Image</th>
+          <th>Staff</th>
+          <th>Action</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ user.first_name }} {{ user.last_name}}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.profile.age }}</td>
+          <td>{{ user.profile.gender }}</td>
+          <td>
+            <img
+              src="{{ user.profile.image.url }}"
+              alt="{{ user.first_name }}"
+            />
+          </td>
+          <td>
+            {% if user.is_staff %}
+            <i
+              class="fa-solid fa-check"
+              style="color: green; font-size: 2em"
+            ></i>
+            {% else %}
+            <i class="fa-solid fa-xmark" style="color: red; font-size: 2em"></i>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'delete' user.id %}" class="delete"
+              ><i class="fa-solid fa-trash-can"></i
+            ></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</section>
+{% endif %} {% endblock %}

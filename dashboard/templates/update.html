@@ -2,9 +2,11 @@
 {% block title %} Dashboard {% endblock %} <br />
 {% load static %} <br />
 {% block content %}
-<section class="edit" style="padding: 100px 0">
+<link rel="stylesheet" href="{% static 'css/update.css' %}" />
+<section class="edit">
   <div class="container">
     <form method="POST" enctype="multipart/form-data">
+      <h1>{{ btn_title }}</h1>
       {% csrf_token %} <br />
       {% for message in messages %}
       <h1>{{message}}</h1>
