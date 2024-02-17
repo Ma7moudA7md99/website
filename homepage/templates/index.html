@@ -189,7 +189,7 @@
         </p>
         <div class="service-link doctor">
           {% if user.is_authenticated %}
-          <a href="{% url 'medical terminology'%}"
+          <a href="{% url 'doctors'%}"
             >Go To <i class="fa-solid fa-arrow-right"></i
           ></a>
           {% else %}
@@ -259,7 +259,7 @@
         </tr>
         <tr>
           <td>Phone</td>
-          <td>+20 102 060 4940</td>
+          <td><i class="fa-solid fa-phone"></i> +20 102 060 4940</td>
         </tr>
         <tr>
           <td>Address</td>
@@ -369,5 +369,19 @@
 </section>
 <!-- end team -->
 <script src="{% static 'js/home.js' %}"></script>
+<script>
+  for (let i = 0; i < cards.length; i++) {
+    setTimeout(() => {
+      cards[i].addEventListener("mouseover", () => {
+        cardLinks[i].style.visibility = "visible";
+        cardLinks[i].style.opacity = "1";
+      });
+      cards[i].addEventListener("mouseout", () => {
+        cardLinks[i].style.visibility = "hidden";
+        cardLinks[i].style.opacity = "0";
+      });
+    }, 1600);
+  }
+</script>
 <script src="{% static 'js/contact.js' %}"></script>
 {% endblock %}

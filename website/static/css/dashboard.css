@@ -23,7 +23,10 @@ section .table tr th {
   letter-spacing: 3px;
   text-transform: uppercase;
 }
-section .table tr th:not(:first-of-type) {
+section.doctors .table tr th:not(.counter) {
+  width: calc(100% / 7);
+}
+section.users .table tr th:not(.counter) {
   width: calc(100% / 8);
 }
 section .table tr td {

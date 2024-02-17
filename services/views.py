@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import SkinCancer
+from dashboard.models import Doctors
 
 import tensorflow as tf
 from keras.models import load_model
@@ -170,3 +171,7 @@ def model_result_text(model_result):
     else:
         result = 'you must consult your doctor'
     return result
+
+def doctor(request):
+    doctors = Doctors.objects.all()
+    return render(request, 'doctors/doctors.html', {'doctors': doctors})

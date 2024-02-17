@@ -1,0 +1,48 @@
+{% extends 'base.html' %} <br />
+{% load static %} <br />
+{% block title %}Doctor's{% endblock %} <br />
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/doctors.css' %}" />
+<section class="intro" id="intro">
+  <div class="container">
+    <div class="text" data-aos="zoom-out" data-aos-duration="2000">
+      <h1>Hello...</h1>
+      <p>Let's Meet our 'Doctors'</p>
+    </div>
+  </div>
+</section>
+<section class="doctors">
+  <div class="container">
+    <div class="word">
+      <h1>Doctor's</h1>
+    </div>
+    {% for doctor in doctors %}
+    <div class="card">
+      <div class="img">
+        <img src="{{ doctor.doctor_image.url }}" alt="" />
+      </div>
+      <div class="info">
+        <h1>{{ doctor.name }}</h1>
+        <p class="special">{{ doctor.specialization }} doctor</p>
+        <p><i class="fa-regular fa-star"></i> {{ doctor.rating }} / 10</p>
+        <p><i class="fa-solid fa-phone"></i> {{ doctor.cellphone }}</p>
+        <p><i class="fa-solid fa-location-dot"></i> {{ doctor.address }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<script>
+  const intro = document.getElementById("intro");
+  // const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY >= intro.offsetHeight - 100) {
+      header.style.color = "black";
+    }
+    if (window.scrollY <= intro.offsetHeight - 100) {
+      header.style.color = "white";
+    }
+  });
+  AOS.init();
+</script>
+{% endblock %}

@@ -21,30 +21,31 @@ window.addEventListener("scroll", function () {
 // enable / disable link in services card
 for (let i = 0; i < cards.length; i++) {
   setTimeout(() => {
-    cards[i].addEventListener("onmousemove", () => {
+    cards[i].addEventListener("mouseover", () => {
       cardLinks[i].style.visibility = "visible";
       cardLinks[i].style.opacity = "1";
     });
-    cards[i].addEventListener("onmouseout", () => {
+    cards[i].addEventListener("mouseout", () => {
       cardLinks[i].style.visibility = "hidden";
       cardLinks[i].style.opacity = "0";
     });
   }, 1600);
 }
-if (window.innerWidth <= 425) {
-  for (let i = 0; i < cards.length; i++) {
-    if (i % 2 === 0) {
-      cards[i].setAttribute(
-        { "data-aos": "fade-left" },
-        { "data-aos-duration": "800" }
-      );
-    } else {
-      cards[i].setAttribute(
-        { "data-aos": "fade-right" },
-        { "data-aos-duration": "800" }
-      );
-    }
-  }
-}
+
+// if (window.innerWidth <= 425) {
+//   for (let i = 0; i < cards.length; i++) {
+//     if (i % 2 === 0) {
+//       cards[i].setAttribute(
+//         { "data-aos": "fade-left" },
+//         { "data-aos-duration": "800" }
+//       );
+//     } else {
+//       cards[i].setAttribute(
+//         { "data-aos": "fade-right" },
+//         { "data-aos-duration": "800" }
+//       );
+//     }
+//   }
+// }
 // AOS initialize
 AOS.init();
