@@ -15,7 +15,7 @@ for (let i = 0; i < user_inputs.length; i++) {
   });
 }
 
-for (let i = 0; i <= user_inputs.length; i++) {
+for (let i = 0; i < user_inputs.length; i++) {
   user_inputs[i].addEventListener("blur", () => {
     animation_spans[i].style.width = "0";
   });

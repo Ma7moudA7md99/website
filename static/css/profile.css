@@ -40,7 +40,8 @@ section {
 .profile-info img {
   border-radius: 50%;
   border: 1px solid var(--main-color);
-  width: 100%;
+  width: 350px;
+  height: 350px;
 }
 .profile-info .user-name h1 {
   font-size: 2em;

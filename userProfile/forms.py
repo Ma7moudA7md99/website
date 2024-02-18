@@ -25,8 +25,9 @@ class ProfileUserUpdateForm(forms.ModelForm):
         return old_password
     
     def clean_image(self):
+        old_image = self.instance.image
         image = self.cleaned_data['image']
-        if image:
+        if old_image != 'default.jpg' and image:
             if self.instance.image:
                 self.instance.image.delete()  # Delete old image
         return image

@@ -3,7 +3,7 @@
 {% load static %} <br />
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
-<section class="doctors">
+<section class="doctors" id="doctors">
   <h1>Doctor List</h1>
   <div class="container">
     <div class="table">
@@ -33,12 +33,12 @@
           <td>{{ doctor.address }}</td>
           {% if user.is_superuser %}
           <td>
-            <a href="{% url 'delete' doctor.id %}" class="delete"
-              ><i class="fa-solid fa-trash-can"></i
-            ></a>
             <a href="{% url 'update doctor' doctor.id %}" class="modify"
               ><i class="fa-solid fa-pen"></i>
             </a>
+            <a href="{% url 'delete' doctor.id %}" class="delete"
+              ><i class="fa-solid fa-trash-can"></i
+            ></a>
           </td>
           {% else %}
           <td>
@@ -58,7 +58,7 @@
   </div>
 </section>
 {% if user.is_superuser %}
-<section class="users">
+<section class="users" id="users">
   <h1>Users List</h1>
   <div class="container">
     <div class="table">
@@ -103,9 +103,17 @@
             <!-- <a href="{% url 'delete' user.id %}" class="delete"
               ><i class="fa-solid fa-trash-can"></i
             ></a> -->
+            {% else %} {% if user.is_active %}
+            <a href="{% url 'user status' user.id %}" style="color: blue"
+              ><i class="fa-solid fa-pause"></i
+            ></a>
             {% else %}
-            <a href="{% url 'delete' user.id %}" class="delete"
-              ><i class="fa-solid fa-trash-can"></i
+            <a href="{% url 'user status' user.id %}" style="color: green"
+              ><i class="fa-solid fa-play"></i
+            ></a>
+            {% endif %}
+            <a href="{% url 'delete' user.id %}" class="delete">
+              <i class="fa-solid fa-trash-can"></i
             ></a>
             {% endif %}
           </td>

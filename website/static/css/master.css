@@ -109,10 +109,6 @@ header .logo img {
   height: 50px;
   transform: translateY(20%);
 }
-header .profile img {
-  height: 50px;
-  transform: translateY(-10%);
-}
 header .right ul {
   display: flex;
   letter-spacing: 3px;
@@ -136,6 +132,9 @@ header .profile {
 header .profile #profile-icon {
   cursor: pointer;
   border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  transform: translateY(-10%);
 }
 header .profile #profile-items {
   background-color: var(--main-color);

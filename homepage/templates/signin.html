@@ -56,7 +56,9 @@
           <div class="info-text">
             <p>
               <i class="fa-solid fa-triangle-exclamation"></i>
-              {{ message }}
+              <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message|safe }}
+              </p>
             </p>
           </div>
         </div>

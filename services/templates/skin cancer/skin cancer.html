@@ -191,7 +191,12 @@
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
     >
-      <form class="analysis" method="POST" enctype="multipart/form-data">
+      <form
+        id="analysis"
+        class="analysis"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         {% csrf_token %}
         <h1>Enter this information's</h1>
         <div class="fname">
@@ -238,7 +243,7 @@
             name="skin_image"
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="submitForm()">Submit</button>
       </form>
     </div>
     <div
@@ -252,10 +257,27 @@
         {{ user.first_name }} {{ user.last_name }}
       </p>
       <br />
-      <p>{{ result }}</p>
+      <p id="result"></p>
     </div>
   </div>
 </section>
-
+<script>
+  function submitForm() {
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData(document.getElementById("analysis"));
+    xhr.open("POST", "skin cancer", true);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          document.getElementById("result").innerHTML = xhr.result;
+        } else {
+          console.log("Request failed. Status code: " + xhr.status);
+        }
+      }
+    };
+    xhr.send(formData);
+  }
+</script>
 <script src="{% static 'js/services.js' %}"></script>
 {% endblock %}

@@ -51,3 +51,9 @@ def delete_(request, id_delete):
         user = User.objects.get(id=id_delete)
         user.delete()
     return redirect('dash')
+
+def user_status(request, user_id):
+    user = User.objects.get(id=user_id)
+    user.is_active = not user.is_active
+    user.save()
+    return redirect('dash')

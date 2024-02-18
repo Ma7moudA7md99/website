@@ -17,4 +17,23 @@
     </form>
   </div>
 </section>
+<script>
+  // prevent user from entering bad characters
+  const doc_name = document.getElementById("id_name");
+  const specialization = document.getElementById("id_specialization");
+  function validateInput(input) {
+    // Regular expression to allow only letters, numbers, and underscores
+    var regex = /^[a-zA-Z0-9_ ]+$/;
+    // Get the input value
+    var value = input.value;
+
+    // Check if the value matches the regular expression
+    if (!regex.test(value)) {
+      // If it doesn't match, remove the last character entered
+      input.value = value.slice(0, -1);
+    }
+  }
+  doc_name.setAttribute("oninput", "validateInput(this)");
+  specialization.setAttribute("oninput", "validateInput(this)");
+</script>
 {% endblock %}

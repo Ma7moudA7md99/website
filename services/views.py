@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render 
+from django.http import JsonResponse
 from .models import SkinCancer
 from dashboard.models import Doctors
 
@@ -130,23 +130,23 @@ medical_mode = model.start_chat(history=[
 def skinCancer(request):
   model = load_model('static/models/skinCancer.h5')
   if request.method == 'POST':
-          
-          try:
-            first_name = request.POST['first_name']
-            last_name = request.POST['last_name']
-            age = request.POST['age']
-            image = request.FILES['skin_image']
-            SkinCancer.objects.create(first_name=first_name, last_name=last_name, age=age, image=image).save()
-            print('media/skin cancer/images/' + str(image))
-            img = cv2.imread('media/skin cancer/images/' + str(image))
-            resize = tf.image.resize(img, (256, 256))
-            model_result = model.predict(np.expand_dims(resize / 255, 0))
-            result = model_result_text(model_result)
-            return render(request, 'skin cancer/skin cancer.html', {'result': result})
-          except Exception as e:
-            print(e)
-            return render(request, template_name='skin cancer/skin cancer.html')
-  
+    try:
+      first_name = request.POST['first_name']
+      last_name = request.POST['last_name']
+      age = request.POST['age']
+      image = request.FILES['skin_image']
+      current_instance = SkinCancer.objects.create(first_name=first_name, last_name=last_name, age=age, image=image)
+      current_instance.save()
+      print(current_instance.image.path)
+      img = cv2.imread(str(current_instance.image.path))
+      resize = tf.image.resize(img, (256, 256))
+      model_result = model.predict(np.expand_dims(resize / 255, 0))
+      result = {'result': model_result_text(model_result)}
+      return JsonResponse(result)
+    except Exception as e:
+      print(e)
+      return render(request, template_name='skin cancer/skin cancer.html')
+
   return render(request, 'skin cancer/skin cancer.html')
 
 
@@ -164,13 +164,14 @@ def medicalTerm(request):
 
 def model_result_text(model_result):
   
-    if model_result < 0.4:
-        result = 'Thank your god you are in good health'
-    elif 0.5 > model_result > 0.4:
-        result = 'Thank your god you are in good health \n but It is best to consult your doctor to ensure your health'
+    percentage = model_result[0] * 100
+    if model_result[0] < 0.4:
+      result = f'Your result is {percentage[0]:.2f}% \n  It seems that you don\'t have Skin Cancer.'
+    elif 0.4 <= model_result[0] < 0.7:
+      result  = f"Your result is {percentage[0]:.2f}% \n The lesion may be benign but it could also be malignant."
     else:
-        result = 'you must consult your doctor'
-    return result
+      result = f"Your result is {percentage[0]:.2f}%\n Based on the results, there might be a possibility of having Skin Cancer.\n Please consult a doctor immediately!"
+    return  result
 
 def doctor(request):
     doctors = Doctors.objects.all()
