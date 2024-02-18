@@ -262,6 +262,10 @@
   </div>
 </section>
 <script>
+  const form = document.querySelector("form");
+  document.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
   function submitForm() {
     var xhr = new XMLHttpRequest();
     var formData = new FormData(document.getElementById("analysis"));
@@ -270,7 +274,10 @@
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          document.getElementById("result").innerHTML = xhr.result;
+          document.getElementById("result").innerHTML = xhr.responseText.slice(
+            12,
+            self.length - 2
+          );
         } else {
           console.log("Request failed. Status code: " + xhr.status);
         }

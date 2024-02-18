@@ -141,8 +141,8 @@ def skinCancer(request):
       img = cv2.imread(str(current_instance.image.path))
       resize = tf.image.resize(img, (256, 256))
       model_result = model.predict(np.expand_dims(resize / 255, 0))
-      result = {'result': model_result_text(model_result)}
-      return JsonResponse(result)
+      result =  model_result_text(model_result)
+      return JsonResponse({'result' : result})
     except Exception as e:
       print(e)
       return render(request, template_name='skin cancer/skin cancer.html')
@@ -156,8 +156,7 @@ def medicalTerm(request):
       question  = term
       medical_mode.send_message(question)
       answer = medical_mode.last.text
-      return render(request, 'terminology/terminology.html', {'question': question, 'answer':answer})
-
+      return JsonResponse({'result' : answer})
 
   return render(request, template_name='terminology/terminology.html')
 
@@ -166,11 +165,11 @@ def model_result_text(model_result):
   
     percentage = model_result[0] * 100
     if model_result[0] < 0.4:
-      result = f'Your result is {percentage[0]:.2f}% \n  It seems that you don\'t have Skin Cancer.'
+      result = f'Your result is {percentage[0]:.2f}% <br />  It seems that you don\'t have Skin Cancer.'
     elif 0.4 <= model_result[0] < 0.7:
-      result  = f"Your result is {percentage[0]:.2f}% \n The lesion may be benign but it could also be malignant."
+      result  = f"Your result is {percentage[0]:.2f}% <br /> The lesion may be benign but it could also be malignant."
     else:
-      result = f"Your result is {percentage[0]:.2f}%\n Based on the results, there might be a possibility of having Skin Cancer.\n Please consult a doctor immediately!"
+      result = f"Your result is {percentage[0]:.2f}% <br /> Based on the results, there might be a possibility of having Skin Cancer. <br /> Please consult a doctor immediately!"
     return  result
 
 def doctor(request):

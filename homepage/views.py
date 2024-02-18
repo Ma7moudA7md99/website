@@ -65,12 +65,14 @@ def sign_in(request):
       login (request, user)
       return redirect('/', user)
     else:
-      user = User.objects.get(username=username)
-      if not user.is_active:
-        messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
+      if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
+        if not user.is_active:
+          messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
+          return render(request, 'signin.html')
+      else:
+        messages.error(request, 'Wrong username or password')
         return render(request, 'signin.html')
-      messages.error(request, 'Wrong username or password')
-      return render(request, 'signin.html')
   return render(request, 'signin.html')
 
 # function that send a message from contact section
