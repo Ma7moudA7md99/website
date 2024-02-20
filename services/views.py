@@ -155,8 +155,9 @@ def medicalTerm(request):
       term = request.POST['question-input']
       question  = term
       medical_mode.send_message(question)
-      answer = medical_mode.last.text
-      return JsonResponse({'result' : answer})
+      answer = medical_mode.last.text.encode('utf-8')
+      return JsonResponse({'result' : answer.decode('utf-8')})
+
 
   return render(request, template_name='terminology/terminology.html')
 

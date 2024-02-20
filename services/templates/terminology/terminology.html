@@ -67,6 +67,13 @@ Terminology {% endblock %} {% block content %}
             />
           </svg>
         </div>
+        <!-- <div class="load-wrapp" style="display: none">
+          <div class="load-1">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div> -->
         <div id="auto-text" class="auto-text">
           <h1 id="question-text">What is this ?</h1>
           <p id="result">
@@ -75,6 +82,7 @@ Terminology {% endblock %} {% block content %}
           </p>
         </div>
       </div>
+
       <div class="enter">
         <div class="icon">
           <?xml version="1.0" ?><svg
@@ -153,8 +161,12 @@ Terminology {% endblock %} {% block content %}
 </div>
 <script>
   const form = document.querySelector("form");
+  const loading = document.querySelector(".load-wrapp");
+  const result = document.getElementById("result");
   document.addEventListener("submit", (e) => {
     e.preventDefault();
+    // loading.style.display = "block";
+    result.innerHTML = "Loading ....";
   });
   function submitForm() {
     var xhr = new XMLHttpRequest();
@@ -168,6 +180,8 @@ Terminology {% endblock %} {% block content %}
             12,
             self.length - 2
           );
+          loading.style.display = "none";
+          result.style.display = "block";
         } else {
           console.log("Request failed. Status code: " + xhr.status);
         }

@@ -305,7 +305,7 @@ section {
     transform: translateY(20%);
   }
   .intro-section .content .text {
-    transform: translateX(0);
+    transform: translateX(-90px);
   }
   .home {
     justify-content: center;

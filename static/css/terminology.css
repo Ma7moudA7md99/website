@@ -96,7 +96,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* flex-direction: column; */
   width: 100%;
   padding: 10px 0;
 }
@@ -124,3 +123,34 @@
   width: 30%;
 }
 /* chat bot */
+/* responsive */
+@media (max-width: 768px) {
+  .intro-img .container .img {
+    width: 100%;
+  }
+  .content .container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .content .container div {
+    width: 100%;
+  }
+  .content .chat-bot {
+    height: 700px;
+  }
+  .content .chat-bot .result .auto-text h1 {
+    font-size: 1.7em;
+  }
+  .content .chat-bot .result .auto-text p {
+    font-size: 1.5em;
+  }
+  .content .chat-bot .enter .input button {
+    right: -10px;
+    top: 20%;
+  }
+  .content .chat-bot .enter .input button svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+/* responsive */

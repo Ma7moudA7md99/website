@@ -184,6 +184,17 @@ section.describe {
   width: 40%;
   text-align: center;
 }
+.form-section .user-input .analysis button {
+  width: 80%;
+  height: 33px;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 3px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: var(--shadow);
+}
 .form-section .result {
   background-color: var(--main-color);
   width: 40%;

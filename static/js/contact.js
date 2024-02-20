@@ -2,7 +2,7 @@
 const parent = document.getElementById("contact-left");
 const inputs = parent.getElementsByTagName("input");
 // get spans
-const spans = document.getElementsByClassName("focus");
+const spans = parent.getElementsByClassName("focus");
 
 // do animation when focus any input
 for (let i = 0; i < inputs.length; i++) {
