@@ -1,126 +1,161 @@
-{% extends 'base.html' %} <br />
-{% block title %} Dashboard {% endblock %} <br />
-{% load static %} <br />
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
-<section class="doctors" id="doctors">
-  <h1>Doctor List</h1>
-  <div class="container">
-    <div class="table">
-      <table>
-        <tr>
-          <th class="counter"></th>
-          <th>Name</th>
-          <th>Specialization</th>
-          <th>Rating</th>
-          <th>Phone</th>
-          <th>Image</th>
-          <th>Address</th>
-          <th>Action</th>
-        </tr>
-        {% if doctors %}
-        <br />
-        {% for doctor in doctors %}
-        <tr>
-          <td>{{ forloop.counter }}</td>
-          <td>{{ doctor.name }}</td>
-          <td>{{ doctor.specialization}}</td>
-          <td>{{ doctor.rating }}/ 10</td>
-          <td>{{ doctor.cellphone }}</td>
-          <td>
-            <img src="{{ doctor.doctor_image.url }}" alt="{{ doctor.name }}" />
-          </td>
-          <td>{{ doctor.address }}</td>
-          {% if user.is_superuser %}
-          <td>
-            <a href="{% url 'update doctor' doctor.id %}" class="modify"
-              ><i class="fa-solid fa-pen"></i>
-            </a>
-            <a href="{% url 'delete' doctor.id %}" class="delete"
-              ><i class="fa-solid fa-trash-can"></i
-            ></a>
-          </td>
-          {% else %}
-          <td>
-            <a href="{% url 'update doctor' doctor.id %}" class="modify"
-              ><i class="fa-solid fa-pen"></i>
-            </a>
-          </td>
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td>No Doctors Found!</td>
-        </tr>
-        {% endif %}
-      </table>
-    </div>
-    <a href="{% url 'add doctor' %}" id="addDoctor">Add</a>
-  </div>
-</section>
-{% if user.is_superuser %}
-<section class="users" id="users">
-  <h1>Users List</h1>
-  <div class="container">
-    <div class="table">
-      <table>
-        <tr>
-          <th class="counter"></th>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Age</th>
-          <th>Gender</th>
-          <th>Image</th>
-          <th>Staff</th>
-          <th>Action</th>
-        </tr>
-        {% for user in users %}
-        <tr>
-          <td>{{ forloop.counter }}</td>
-          <td>{{ user.profile.first_name }} {{ user.profile.last_name}}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.profile.age }}</td>
-          <td>{{ user.profile.gender }}</td>
-          <td>
-            <img
-              src="{{ user.profile.image.url }}"
-              alt="{{ user.profile.first_name }}"
-            />
-          </td>
-          <td>
-            {% if user.is_staff %}
-            <i
-              class="fa-solid fa-check"
-              style="color: green; font-size: 2em"
-            ></i>
-            {% else %}
-            <i class="fa-solid fa-xmark" style="color: red; font-size: 2em"></i>
-            {% endif %}
-          </td>
-          <td>
-            {% if user.is_superuser %}
-            <!-- <a href="{% url 'delete' user.id %}" class="delete"
-              ><i class="fa-solid fa-trash-can"></i
-            ></a> -->
-            {% else %} {% if user.is_active %}
-            <a href="{% url 'user status' user.id %}" style="color: blue"
-              ><i class="fa-solid fa-pause"></i
-            ></a>
-            {% else %}
-            <a href="{% url 'user status' user.id %}" style="color: green"
-              ><i class="fa-solid fa-play"></i
-            ></a>
-            {% endif %}
-            <a href="{% url 'delete' user.id %}" class="delete">
-              <i class="fa-solid fa-trash-can"></i
-            ></a>
-            {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
-    </div>
-  </div>
-</section>
-{% endif %} {% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <!-- main css file -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    <!-- <link rel="stylesheet" href="css/contact.css" /> -->
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <title>Medical Care | Dashboard</title>
+  </head>
+  <body>
+    <aside>
+      <div class="container">
+        <div class="logo">
+          <img src="{% static 'image/white logo.png' %}" alt="logo" />
+        </div>
+        <div class="items">
+          <ul>
+            <li onclick="toggleSections(0)">Users<span></span></li>
+            <li onclick="toggleSections(1)">Doctors<span></span></li>
+            <li onclick="toggleSections(2)">Posts<span></span></li>
+            <li><a href="{% url 'profile' %}">Profile</a><span></span></li>
+          </ul>
+        </div>
+        <div class="logout">
+          <a href="{% url 'logout' %}">Log out</a>
+        </div>
+      </div>
+    </aside>
+
+    <section id="users" class="users">
+      <h1>Users</h1>
+      <div class="container">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Account Type</th>
+            <th>Last Login</th>
+            <th>status</th>
+          </tr>
+          {% for user in users %}
+          <tr>
+            <td>
+              <div class="info">
+                <div class="img">
+                  <img src="{{ user.profile.image.url }}" alt="" />
+                </div>
+                <div class="name">
+                  <p>{{ user.first_name }} {{ user.last_name }}</p>
+                  <p class="email">{{ user.email}}</p>
+                </div>
+              </div>
+            </td>
+            <td>{% if user.is_staff %} Staff {% else %} Normal {% endif%}</td>
+            <td>{{ user.last_login }}</td>
+            <td>
+              {% if user.is_active %} Active {% else %} Inactive {% endif%}
+              <br />
+              {%if user.is_superuser %} {% else %}
+              <span class="actions">
+                {% if user.is_active %}
+                <a
+                  href="{% url 'user status' user.id %}"
+                  title="Pause user account "
+                  ><i class="fa-solid fa-pause"></i
+                ></a>
+                {% else %}
+                <a
+                  href="{% url 'user status' user.id %}"
+                  title="Active user account "
+                  ><i class="fa-solid fa-play"></i
+                ></a>
+                {% endif %}
+                <a href="{% url 'delete' user.id %}" title="Delete user account"
+                  ><i class="fa-solid fa-trash"></i
+                ></a>
+              </span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+    <section id="doctors" class="doctors">
+      <h1>Doctors</h1>
+      <div class="container">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Rating</th>
+            <th>Phone</th>
+          </tr>
+          {% for doctor in doctors %}
+          <tr>
+            <td>
+              <div class="info">
+                <div class="img">
+                  <img src="{{doctor.doctor_image.url}}" alt="" />
+                </div>
+                <div class="name">
+                  <p>{{ doctor.name }}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{ doctor.specialization}}</td>
+            <td>{{ doctor.rating}} / 10</td>
+            <td>
+              <i class="fa-solid fa-phone"></i> {{doctor.cellphone}} <br />
+              {% if user.is_superuser %}
+              <span class="actions">
+                <a
+                  href="{% url 'delete' doctor.id %}"
+                  title="Delete user account"
+                  ><i class="fa-solid fa-trash"></i
+                ></a>
+              </span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+    <section></section>
+  </body>
+  <script>
+    const items = document.querySelectorAll(".items ul li");
+    const sections = document.getElementsByTagName("section");
+
+    function toggleSections(sectionIndex) {
+      for (let i = 0; i < sections.length; i++) {
+        if (i === sectionIndex) {
+          // Show the selected section
+          sections[i].style.display = "block";
+        } else {
+          // Hide other sections
+
+          sections[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+</html>

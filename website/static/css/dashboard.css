@@ -1,70 +1,117 @@
-section {
-  padding: 100px 0;
-  margin: 0 auto;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+aside {
+  position: fixed;
+  background-color: var(--main-color);
+  width: 20%;
+  height: 100%;
+  color: white;
+  font-size: 1.3em;
+  box-shadow: var(--shadow);
+}
+aside .container {
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90%;
+  height: 96%;
+  margin: 5px auto;
+}
+aside .container .logo {
+  width: 100%;
+  margin: 10px 0;
+}
+aside .container .logo img {
+  width: 100%;
+}
+aside .container .items {
+  transform: translateY(-50%);
+  margin: 10px 0;
+}
+aside .container .items ul {
+  letter-spacing: 2px;
+}
+aside .container .items ul li {
   position: relative;
+  padding: 0 10px;
+  margin: 30px 0;
+  transition: 1s ease-in-out;
+  z-index: 3;
+  cursor: pointer;
+}
+aside .container .items ul li span {
+  background-color: white;
+  height: 140%;
+  width: 0%;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: inherit;
+  border-radius: 10px;
+  z-index: -1;
+}
+aside .container .items ul li:hover {
+  /* list-style: disc; */
+  color: var(--main-color);
+}
+aside .container .items ul li:hover span {
+  width: 100%;
+}
+section {
+  display: none;
+  transition: 1s ease-in-out;
+  margin-left: 20%;
+  background-color: #e7f5ff;
+  height: 100%;
+}
+section.users {
+  display: block;
 }
 section h1 {
-  text-align: center;
-  margin: 30px 0;
-  letter-spacing: 10px;
-  text-transform: uppercase;
-}
-section .table {
-  width: 100%;
-  border: 1px solid var(--main-color);
-  border-radius: 10px;
-  padding: 0 30px;
-  text-align: center;
-}
-section .table tr th {
-  border-bottom: 1px solid var(--main-color);
-  color: var(--main-color);
-  padding: 10px;
+  padding: 10px 20px;
+  font-size: 2em;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
-section.doctors .table tr th:not(.counter) {
-  width: calc(100% / 7);
+section .container {
+  width: 95%;
 }
-section.users .table tr th:not(.counter) {
-  width: calc(100% / 8);
+section .container table {
+  width: 100%;
+  border-collapse: collapse;
 }
-section .table tr td {
+section .container table tr {
+  height: 65px;
   border-bottom: 1px solid #777;
-  padding: 10px;
 }
-section .table tr td img {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  padding: 0 30px;
+section .container table tr th {
+  text-align: justify;
+  width: calc(100% / 4);
+  padding: 10px 0;
 }
-section .table tr td button {
-  padding: 5px 10px;
-  margin: 0 3px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 20px;
+section .container table tr td .actions {
+  padding-left: 60%;
 }
-
-section .table tr td .delete {
-  color: red;
+section.doctors .container table tr td .actions {
+  padding-left: 35%;
 }
-section .table tr td .modify {
-  color: blue;
+section .container table tr td .info {
+  position: relative;
 }
-section.doctors #addDoctor {
+section .container table tr td .info .name {
+  margin-left: 60px;
+  line-height: 1.5;
+}
+section .container table tr td .info .name .email {
+  color: var(--p-text-color);
+}
+section .container table tr td .img {
   position: absolute;
-  top: 90px;
-  right: 10%;
-  font-size: 20px;
-  background-color: var(--main-color);
-  color: white;
-  padding: 5px 10px;
-  height: 30px;
-  width: 60px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+}
+section .container table tr td img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

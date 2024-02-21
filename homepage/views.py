@@ -63,6 +63,8 @@ def sign_in(request):
     
     if user is not None:
       login (request, user)
+      if user.is_staff:
+        return redirect('dash')
       return redirect('/', user)
     else:
       if User.objects.filter(username=username).exists():
