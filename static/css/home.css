@@ -374,6 +374,10 @@ section {
   }
 }
 /* contact */
+.contact-section {
+  background-image: url("../image/contact-background.jpg");
+  background-size: cover;
+}
 .contact-section .container {
   gap: 100px;
 }

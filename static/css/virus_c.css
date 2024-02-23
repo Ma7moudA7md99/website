@@ -1,0 +1,102 @@
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+.intro {
+  padding: 100px 0;
+  background-image: url("../image/virus_c-background.jpg");
+  background-size: cover;
+  height: 700px;
+  position: relative;
+}
+.intro .container {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  font-size: 1.2em;
+  letter-spacing: 3px;
+  line-height: 2;
+}
+.intro .container p {
+  color: var(--p-text-color);
+}
+/* info section */
+.info-section {
+  padding: 100px 0;
+}
+.info-section .content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.info-section .content .img {
+  margin: 0 30px;
+}
+.info-section .content .img img {
+  width: 70%;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  filter: blur(3px) grayscale(1);
+}
+.info-section .content .img img:hover {
+  filter: none;
+}
+.info-section .content .inner-text {
+  margin: auto 0;
+  line-height: 1.5;
+}
+.info-section .content .inner-text .info-source {
+  font-size: 0.8em;
+  color: var(--p-text-color);
+}
+.info-section .content .inner-text .info-source strong {
+  padding: 0;
+  text-decoration: underline;
+}
+.info-section .content .info {
+  position: relative;
+}
+.info-section .content strong {
+  font-size: 1.5em;
+  padding-left: 50px;
+}
+/* icon animation */
+.info-section .content .info .icon {
+  position: absolute;
+  top: -30px;
+}
+.info-section .content .info .icon svg {
+  width: 60px;
+}
+.info-section .content .info .icon #dark1,
+.info-section .content .info .icon #dark2,
+.info-section .content .info .icon #light {
+  transition: 1s ease;
+}
+.info-section .content .info .icon #dark2 {
+  transform: translateX(-100%);
+}
+.info-section .content .info:hover .icon #light {
+  transform: translateX(15%);
+}
+.info-section .content .info:hover .icon #dark1 {
+  transform: translateX(40%);
+  opacity: 0;
+}
+.info-section .content .info:hover .icon #dark2 {
+  transform: translateX(0%);
+}
+/* icon animation */
+/* form section */
+.form-result {
+  padding: 100px 0;
+  background-image: url("../image/virus_c-form.jpg");
+  background-size: cover;
+}
+/* form section */

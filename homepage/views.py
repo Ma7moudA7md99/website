@@ -58,23 +58,19 @@ def sign_in(request):
     # Get the username and password provided by the user.
     username = request.POST['username']
     password = request.POST['password']
-    user= authenticate(username=username, password=password)
+    user = authenticate(username=username, password=password)
 
     
     if user is not None:
+      if not user.is_active:
+        messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
       login (request, user)
       if user.is_staff:
         return redirect('dash')
       return redirect('/', user)
     else:
-      if User.objects.filter(username=username).exists():
-        user = User.objects.get(username=username)
-        if not user.is_active:
-          messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
-          return render(request, 'signin.html')
-      else:
-        messages.error(request, 'Wrong username or password')
-        return render(request, 'signin.html')
+      messages.error(request, 'Wrong username or password')
+      
   return render(request, 'signin.html')
 
 # function that send a message from contact section
