@@ -14,19 +14,19 @@ class VirusCForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(VirusCForm, self).__init__(*args, **kwargs)
-        field_help_texts = {
-            'age': 'Enter the Age in years',
-            'alb': 'Enter the Albumin Level',
-            'alp': 'Enter the Alkaline Phosphatase Level',
-            'alt': 'Enter the Alanine Transaminase Level',
-            'ast': 'Enter the Aspartame Transaminase Level',
-            'bil': 'Enter the Bilirubin Level',
-            'che': 'Enter the Cholinesterase Level',
-            'chol': 'Enter the Cholesterol Level',
-            'crea': 'Enter the Creatinine Level',
-            'ggt': 'Enter the Gamma-Glutamyl Transferase Level',
-            'prot': 'Enter the Protein Level',
+        field_placeholders = {
+            'age': 'Age in years',
+            'alb': 'Albumin Level',
+            'alp': 'Alkaline Phosphatase Level',
+            'alt': 'Alanine Transaminase Level',
+            'ast': 'Aspartame Transaminase Level',
+            'bil': 'Bilirubin Level',
+            'che': 'Cholinesterase Level',
+            'chol': 'Cholesterol Level',
+            'crea': 'Creatinine Level',
+            'ggt': 'Gamma-Glutamyl Transferase Level',
+            'prot': 'Protein Level',
         }
         for field_name, field in self.fields.items():
-            field.help_text = field_help_texts.get(field_name, '')
+            field.widget.attrs.update({'placeholder': field_placeholders.get(field_name, '')})
         self.fields['gender'].label = 'Gender'

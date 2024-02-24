@@ -99,4 +99,57 @@
   background-image: url("../image/virus_c-form.jpg");
   background-size: cover;
 }
+.form-result .container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+}
+.form-result .form {
+  width: 100%;
+}
+.form-result .form input {
+  width: 50%;
+  height: 25px;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  padding-left: 10px;
+  letter-spacing: 2px;
+  margin-left: 5px;
+}
+.form-result .form input[type="radio"] {
+  height: fit-content;
+  width: fit-content;
+  margin-left: 25%;
+}
+.form-result .form button {
+  width: 62%;
+  margin: 10px 0;
+  font-weight: bold;
+  letter-spacing: 3px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  height: 30px;
+  color: white;
+  border: 1px solid var(--main-color);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
 /* form section */
+/* result div */
+.form-result .result {
+  width: 100%;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  box-shadow: var(--shadow);
+  letter-spacing: 2px;
+  padding: 30px 0;
+}
+.form-result .result h1 {
+  text-transform: capitalize;
+}
+.form-result .result p {
+  color: var(--p-text-color);
+}
+/* result div */
