@@ -8,8 +8,7 @@ class VirusCForm(forms.ModelForm):
 
     gender = forms.ChoiceField(
         choices=VirusC.gender_choices.items(),
-        widget=forms.RadioSelect,
-        help_text="Select the gender"
+        widget=forms.RadioSelect
     )
 
     def __init__(self, *args, **kwargs):
@@ -29,4 +28,3 @@ class VirusCForm(forms.ModelForm):
         }
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'placeholder': field_placeholders.get(field_name, '')})
-        self.fields['gender'].label = 'Gender'

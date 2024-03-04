@@ -75,9 +75,9 @@ def virus_c(request):
       values_reshaped = values.reshape(1, -1)
       model_result = VirusCModel.predict(values_reshaped)
       if  int(model_result[0])==0:
-        result = 'You are not infected'
+        result = 'You may be infected with the virus but you need to consult your doctor to know the final result'
       else:
-        result = "You are infected"
+        result = "Thank your God you are not infected with the virus"
       print(result)
       return JsonResponse({"result": result})
     print('not valid')

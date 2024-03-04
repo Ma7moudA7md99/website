@@ -3,7 +3,12 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/virus_c.css' %}" />
 <section class="intro">
-  <div class="container">
+  <div
+    class="container"
+    data-aos="fade-in"
+    data-aos-easing="ease-out-cubic"
+    data-aos-duration="2000"
+  >
     <h1>Virus C</h1>
     <p>Hepatitis C virus</p>
   </div>
@@ -163,10 +168,26 @@
 <script>
   const form = document.querySelector("form");
   const result = document.getElementById("result");
+  let loadingInterval; // Variable to hold the loading interval
+
   document.addEventListener("submit", (e) => {
+    // Start the loading animation
+    loadingInterval = setInterval(updateLoadingTitle, 1000);
     e.preventDefault();
-    result.innerHTML = "Loading ....";
+    submitForm();
   });
+
+  let loadingText = "Loading";
+
+  function updateLoadingTitle() {
+    loadingText += ".";
+    if (loadingText.length > 10) {
+      // Reset after 10 dots
+      loadingText = "Loading";
+    }
+    result.textContent = loadingText;
+  }
+
   function submitForm() {
     var xhr = new XMLHttpRequest();
     var formData = new FormData(document.getElementById("virusC"));
@@ -174,8 +195,9 @@
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
+        clearInterval(loadingInterval); // Stop the loading animation
         if (xhr.status == 200) {
-          document.getElementById("result").innerHTML = xhr.responseText;
+          result.innerHTML = xhr.responseText.slice(12, self.length - 2);
         } else {
           console.log("Request failed. Status code: " + xhr.status);
         }
