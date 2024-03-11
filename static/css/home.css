@@ -173,7 +173,7 @@ section {
   flex-wrap: wrap;
   overflow: hidden;
 }
-.services .container .card {
+.container .card {
   flex-basis: 350px;
   height: 500px;
   border: 1px solid var(--main-color);
@@ -182,14 +182,14 @@ section {
   line-height: 2;
   border-radius: 10px;
 }
-.services .container .card .img {
+.container .card .img {
   z-index: 0;
 }
-.services .container .card .img img {
+.container .card .img img {
   width: 100%;
   border-radius: 10px;
 }
-.services .container .card .text {
+.container .card .text {
   position: relative;
   border-radius: inherit;
   background-color: white;
@@ -198,7 +198,7 @@ section {
   transition: 1s ease-in-out;
   z-index: 1;
 }
-.services .container .card .text::before {
+.container .card .text::before {
   content: "";
   position: absolute;
   top: -150px;
@@ -210,16 +210,16 @@ section {
   border-top-right-radius: 10px;
   transition: inherit;
 }
-.services .container .card .text h2 {
+.container .card .text h2 {
   color: var(--main-color);
   padding-top: 20px;
   font-size: 32px;
   transition: inherit;
 }
-.services .container .card .text p {
+.container .card .text p {
   color: var(--p-text-color);
 }
-.services .container .card .text .service-link {
+.container .card .text .service-link {
   visibility: hidden;
   opacity: 0;
   background-color: var(--main-color);
@@ -230,26 +230,26 @@ section {
   transition: inherit;
   transform: translateY(85%);
 }
-.services .container .card .text .service-link.term {
+.container .card .text .service-link.term {
   transform: translateY(5%);
 }
-.services .container .card .text .service-link.doctor {
+.container .card .text .service-link.doctor {
   transform: translateY(152%);
 }
-.services .container .card:hover .text {
+.container .card:hover .text {
   height: 20%;
 }
-.services .container .card:hover .text::before {
+.container .card:hover .text::before {
   top: 100px;
   opacity: 0;
   background-color: #0086c4;
 }
-.services .container .card:hover .text h2 {
+.container .card:hover .text h2 {
   padding: 0;
   height: fit-content;
   margin-bottom: 0;
 }
-.services .container .card:hover .text p {
+.container .card:hover .text p {
   margin: 0;
 }
 /* services section */
@@ -373,6 +373,16 @@ section {
     height: 141px;
   }
 }
+/* doctors */
+section.doctors .container {
+  padding: var(--section-padding);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+/* doctors */
 /* contact */
 .contact-section {
   background-image: url("../image/contact-background.jpg");

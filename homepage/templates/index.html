@@ -22,7 +22,7 @@
         <p>Your "HEALTH" is our Responsibility</p>
       </div>
       <div class="img">
-        <img src="{% static 'image/home.png'%}" alt="Home" />
+        <img src="{% static 'image/home page/intro/home.png'%}" alt="Home" />
       </div>
     </div>
   </div>
@@ -34,7 +34,10 @@
       <h1>Welcome</h1>
     </div>
     <div class="img" data-aos="fade-right">
-      <img src="{% static 'image/together.jpg'%}" alt="" />
+      <img
+        src="{% static 'image/home page/home section/together.jpg'%}"
+        alt=""
+      />
     </div>
     <div class="text" data-aos="fade-left">
       <p>
@@ -68,7 +71,10 @@
     </div>
     <div class="card">
       <div class="img">
-        <img src="{% static 'image/skincancer.jpg' %}" alt="skin cancer" />
+        <img
+          src="{% static 'image/home page/services/skincancer.jpg' %}"
+          alt="skin cancer"
+        />
       </div>
       <div class="text">
         <h2>Skin Cancer</h2>
@@ -91,7 +97,10 @@
     </div>
     <div class="card">
       <div class="img">
-        <img src="{% static 'image/diabetes.jpg' %}" alt="diabetes" />
+        <img
+          src="{% static 'image/home page/services/diabetes.jpg' %}"
+          alt="diabetes"
+        />
       </div>
       <div class="text">
         <h2>Diabetes</h2>
@@ -114,7 +123,10 @@
     </div>
     <div class="card">
       <div class="img">
-        <img src="{% static 'image/lungcancer.jpg' %}" alt="Lung Cancer" />
+        <img
+          src="{% static 'image/home page/services/lungcancer.jpg' %}"
+          alt="Lung Cancer"
+        />
       </div>
       <div class="text">
         <h2>Lung Cancer</h2>
@@ -137,7 +149,10 @@
     </div>
     <div class="card">
       <div class="img">
-        <img src="{% static 'image/virusc.jpg' %}" alt="Virus C" />
+        <img
+          src="{% static 'image/home page/services/virusc.jpg' %}"
+          alt="Virus C"
+        />
       </div>
       <div class="text">
         <h2>Virus C</h2>
@@ -161,7 +176,7 @@
     <div class="card">
       <div class="img">
         <img
-          src="{% static 'image/terminology.jpg' %}"
+          src="{% static 'image/home page/services/terminology.jpg' %}"
           alt="Medical Terminology"
         />
       </div>
@@ -183,19 +198,30 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+<!-- doctors  -->
+<section class="doctors" id="doctors">
+  <div class="container">
+    <div class="word">
+      <h1>Doctors</h1>
+    </div>
     <div class="card">
       <div class="img">
-        <img src="{% static 'image/doctor.jpg' %}" alt="Doctor" />
+        <img
+          src="{% static 'image/home page/doctor section/heart.jpg' %}"
+          alt="Heart Doctor card image"
+        />
       </div>
       <div class="text">
-        <h2>Doctors</h2>
+        <h2>Heart Doctors</h2>
         <p>
-          We will help you choose, review, and know the evaluation of top
-          doctors in all specialties
+          Here you can find many doctors at the highest levels in all
+          specialties
         </p>
-        <div class="service-link doctor">
+        <div class="service-link">
           {% if user.is_authenticated %}
-          <a href="{% url 'doctors'%}"
+          <a href="{% url 'skin cancer' %}"
             >Go To <i class="fa-solid fa-arrow-right"></i
           ></a>
           {% else %}
@@ -208,7 +234,7 @@
     </div>
   </div>
 </section>
-
+<!-- doctors  -->
 <!-- contact -->
 <section class="contact-section" id="contact">
   <div class="container">
@@ -289,7 +315,7 @@
       <div class="container">
         <div class="box">
           <div class="data">
-            <img src="{% static 'image/dr alaa.jpg' %}" alt="Dr Alaa" />
+            <img src="{% static 'image/team/dr alaa.jpg' %}" alt="Dr Alaa" />
             <div class="social">
               <a href="#">
                 <i class="fab fa-facebook-f"></i>
@@ -307,7 +333,10 @@
         </div>
         <div class="box">
           <div class="data">
-            <img src="{% static 'image/ramadan1.jpg' %}" alt="Mahmoud Ahmed" />
+            <img
+              src="{% static 'image/team/ramadan1.jpg' %}"
+              alt="Mahmoud Ahmed"
+            />
             <div class="social">
               <a href="https://www.facebook.com/Ma7moudA7md99" target="_blank">
                 <i class="fab fa-facebook-f"></i>
@@ -329,7 +358,10 @@
         </div>
         <div class="box">
           <div class="data">
-            <img src="{% static 'image/nasser.jpg' %}" alt="Mohamed Nasser" />
+            <img
+              src="{% static 'image/team/nasser.jpg' %}"
+              alt="Mohamed Nasser"
+            />
             <div class="social">
               <a href="https://www.facebook.com/profile.php?id=100020581831790">
                 <i class="fab fa-facebook-f"></i>
@@ -350,7 +382,7 @@
         </div>
         <div class="box">
           <div class="data">
-            <img src="{% static 'image/jamil.jpg' %}" alt="Jamil" />
+            <img src="{% static 'image/team/jamil.jpg' %}" alt="Jamil" />
             <div class="social">
               <a href="#">
                 <i class="fab fa-facebook-f"></i>

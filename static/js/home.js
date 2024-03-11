@@ -49,3 +49,25 @@ for (let i = 0; i < cards.length; i++) {
 // }
 // AOS initialize
 AOS.init();
+
+// doctors slide show
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("card-slide");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("fade-in"); // Remove the fade-in class from all slides
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].classList.add("fade-in"); // Apply the fade-in class to the current slide
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
