@@ -85,6 +85,16 @@ def virus_c(request):
     form = VirusCForm()
   return render(request, 'virus c/virus_c.html', {'form': form})
 
-def doctor(request):
-    doctors = Doctors.objects.all()
+def doctor(request, specialization):
+    if specialization == "heart":
+      doctors = Doctors.objects.filter(specialization="heart")
+    elif specialization == "dentist":
+      doctors = Doctors.objects.filter(specialization="dentist")
+    else:
+      doctors = Doctors.objects.all()
     return render(request, 'doctors/doctors.html', {'doctors': doctors})
+
+
+def doctor_message(request, doctor_id):
+  doctor = Doctors.objects.get(id=doctor_id)
+  return render(request, "doctors/message.html", {"doctor": doctor})

@@ -28,6 +28,9 @@
         <p><i class="fa-solid fa-phone"></i> {{ doctor.cellphone }}</p>
         <p><i class="fa-solid fa-location-dot"></i> {{ doctor.address }}</p>
       </div>
+      <a href="{% url 'message' doctor.id %}">
+        <i class="fa-solid fa-message"></i>
+      </a>
     </div>
     {% endfor %}
   </div>

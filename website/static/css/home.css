@@ -382,6 +382,12 @@ section.doctors .container {
   flex-wrap: wrap;
   overflow: hidden;
 }
+section.doctors .container .card {
+  height: 400px;
+}
+section.doctors .container .card .text::before {
+  top: -155px;
+}
 /* doctors */
 /* contact */
 .contact-section {

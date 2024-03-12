@@ -40,6 +40,7 @@ section.intro {
   box-shadow: var(--shadow);
   border-radius: 10px;
   color: white;
+  text-align: center;
 }
 .doctors .container .card .img img {
   width: 290px;
@@ -62,4 +63,9 @@ section.intro {
 }
 .doctors .container .card .info p {
   color: rgba(255, 255, 255, 0.9);
+}
+.doctors .container .card a {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

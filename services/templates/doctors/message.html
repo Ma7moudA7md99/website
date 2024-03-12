@@ -1,0 +1,22 @@
+{% extends 'base.html' %} <br />
+{% load static %} <br />
+{% block title %} Doctor Message {% endblock %} <br />
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/message.css' %}" />
+<section class="content">
+  <div class="doctor-info">
+    <div class="container">
+      <div class="img">
+        <img src="{{ doctor.doctor_image.url }}" alt="Doctor image" />
+      </div>
+      <div class="info">
+        <h1>{{ doctor.name }}</h1>
+        <p class="special">{{ doctor.specialization }} doctor</p>
+        <p><i class="fa-regular fa-star"></i> {{ doctor.rating }} / 10</p>
+        <p><i class="fa-solid fa-phone"></i> {{ doctor.cellphone }}</p>
+        <p><i class="fa-solid fa-location-dot"></i> {{ doctor.address }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
