@@ -1,21 +1,22 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.core.mail import send_mail
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from userProfile.models import profile
-import tensorflow as tf
-from keras.models import load_model
-import cv2
-import numpy as np
-import traceback
+from dashboard.models import UserMessage, Doctors
 
 # Create your views here.
 # function to render and load html content for home page
 def home(request):
-  return render(request,template_name='index.html')
+
+  user_doctor = False
+  if request.user.is_authenticated:
+    Profile = profile.objects.get(user=request.user)
+    if Doctors.objects.filter(username=Profile).exists():
+      user_doctor = True
+  
+  return render(request,'index.html', {"is_doctor":user_doctor})
 
 # function to render and load html content for sign up page
 # and it creates a new user too 
@@ -58,15 +59,22 @@ def sign_in(request):
     # Get the username and password provided by the user.
     username = request.POST['username']
     password = request.POST['password']
-    user = authenticate(username=username, password=password)
 
-    
+
+    user = authenticate(username=username, password=password)
+    Profile = profile.objects.get(user=user)
+    try:
+        doctor_profile = Doctors.objects.get(username=Profile)
+    except:
+      doctor_profile = False
     if user is not None:
       if not user.is_active:
         messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
       login (request, user)
       if user.is_staff:
         return redirect('dash')
+      # if doctor_profile:
+      #   return redirect('dash')
       return redirect('/', user)
     else:
       messages.error(request, 'Wrong username or password')
@@ -80,17 +88,11 @@ def send_msg(request):
     email_sender = request.POST['email-contact']
     message = request.POST['message']
 
-    print(subject)
-    print(email_sender)
-    print(message)
-    send_mail(
-      subject,
-      message,
-      from_email=email_sender,
-      recipient_list=['nasr66440@gmail.com'],
-      fail_silently=False,
-    )
-
+    msg = UserMessage.objects.create(user_email= email_sender)
+    msg.subject = subject
+    msg.message = message
+    msg.save()
+    return HttpResponse('done')
   return render(request,'index.html')
 # function to logout 
 def log_out(request):

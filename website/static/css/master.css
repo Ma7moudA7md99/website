@@ -95,6 +95,7 @@ header {
 }
 .item-is-active {
   transform: rotateX(0deg) !important;
+  transition: 0.1s !important;
 }
 .container {
   width: 80%;

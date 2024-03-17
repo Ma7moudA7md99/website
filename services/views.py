@@ -37,8 +37,11 @@ def medicalTerm(request):
       term = request.POST['question-input']
       question  = term
       medical_model.send_message(question)
-      answer = medical_model.last.text.encode('utf-8')
-      return JsonResponse({'result' : answer.decode('utf-8')})
+      answer = medical_model.last.text
+
+
+      print(question, answer)
+      return JsonResponse({'result' : answer})
 
 
   return render(request, template_name='terminology/terminology.html')

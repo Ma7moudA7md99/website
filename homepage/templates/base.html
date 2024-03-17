@@ -63,7 +63,10 @@
                   <li><a href="{% url 'profile' %}">View Profile</a></li>
                   {% if user.is_staff %}
                   <li><a href="{% url 'dash' %}">Dashboard</a></li>
+                  {% endif %} {% if is_doctor %}
+                  <li><a href="{% url 'doctor dashboard' %}">Dashboard</a></li>
                   {% endif %}
+
                   <li><a href="{% url 'logout' %}">Log out</a></li>
                 </ul>
               </div>

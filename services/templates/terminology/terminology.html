@@ -9,7 +9,10 @@ Terminology {% endblock %} {% block content %}
 <div class="intro-img">
   <div class="container">
     <div class="img">
-      <img src="{% static 'image/terminology.jpg' %}" alt="" />
+      <img
+        src="{% static 'image/home page/services/terminology.jpg' %}"
+        alt=""
+      />
     </div>
   </div>
 </div>
@@ -167,19 +170,31 @@ Terminology {% endblock %} {% block content %}
     e.preventDefault();
     // loading.style.display = "block";
     result.innerHTML = "Loading ....";
+    let question = document.querySelector("#question-text");
+    questionInput = document.getElementById("question-input");
+    question.innerHTML = questionInput.value;
+
+    questionInput.value = "";
   });
   function submitForm() {
     var xhr = new XMLHttpRequest();
     var formData = new FormData(document.getElementById("analysis"));
     xhr.open("POST", "medical terminology", true);
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader(
+      "X-Requested-With",
+      "XMLHttpRequest",
+      "Accept-Charset",
+      "utf-8"
+    );
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          document.getElementById("result").innerHTML = xhr.responseText.slice(
-            12,
-            self.length - 2
-          );
+          answer = xhr.responseText.slice(12, self.length - 2);
+          var decodedText = answer.replace(/\\u[\dA-F]{4}/gi, function (match) {
+            return String.fromCharCode(parseInt(match.replace(/\\u/g, ""), 16));
+          });
+          decodedText = decodedText.replace(/\\n/g, "<br>");
+          document.getElementById("result").innerHTML = decodedText;
           loading.style.display = "none";
           result.style.display = "block";
         } else {

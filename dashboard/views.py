@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import JsonResponse
 from django.contrib.auth.models import User
-from .models import Doctors
+from .models import Doctors, UserMessage
 from userProfile.models import profile
 from .forms import DoctorForm
 
@@ -10,7 +11,8 @@ from .forms import DoctorForm
 def dashboard(request):
     doctors = Doctors.objects.all()
     users = User.objects.all()
-    return render(request, 'dashboard.html', {'doctors': doctors, 'users': users})
+    user_messages = UserMessage.objects.all()
+    return render(request, 'dashboard.html', {'doctors': doctors, 'users': users, 'messages':user_messages})
 
 
 def update_doctor(request, doctor_id):
@@ -57,3 +59,7 @@ def user_status(request, user_id):
     user.is_active = not user.is_active
     user.save()
     return redirect('dash')
+
+
+def doctor_dash(request):
+    pass

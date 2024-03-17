@@ -64,7 +64,12 @@
     </div>
   </div>
 </section>
-<section class="services" id="services">
+<section
+  class="services"
+  id="services"
+  data-aos="zoom-in-down"
+  data-aos-duration="2000"
+>
   <div class="container">
     <div class="word">
       <h1>Services</h1>
@@ -260,46 +265,46 @@
     </div>
   </div>
 </section>
-<!-- doctors  -->
+<!-- end doctors  -->
 <!-- contact -->
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="word">
       <h1>Contact Us</h1>
     </div>
-    <!-- <div class="contact-box"> -->
-    <div class="contact-left" id="contact-left">
+    <div
+      class="contact-left"
+      id="contact-left"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+    >
       <h3>Send Your Request</h3>
-      <form method="post" action="/send_msg">
+      <form method="post" action="send_msg/">
         {% csrf_token %}
-        <!-- <div class="input-row">
-          <div class="input-group">
-            <label>Name</label>
-            <input type="text" id="name" />
-            <span class="focus"></span>
-          </div>
-          <div class="input-group">
-            <label>Phone</label>
-            <input type="text" id="phone" />
-            <span class="focus"></span>
-          </div>
-        </div> -->
+
         <div class="input-row">
           <div class="input-group">
             <label>Email</label>
+            {% if user.is_authenticated %}
+            <input
+              type="email"
+              name="email-contact"
+              id="email-"
+              value="{{user.profile.email}}"
+            />
+            {% else %}
             <input type="email" name="email-contact" id="email-" />
-            <span class="focus"></span>
+            {% endif %}
           </div>
           <div class="input-group">
             <label>Subject</label>
             <input type="text" name="subject" id="subject" />
-            <span class="focus"></span>
           </div>
         </div>
 
         <label>Message</label>
         <textarea
-          rows="5"
+          rows="7"
           placeholder="Your Message"
           name="message"
           id="message"
@@ -308,7 +313,7 @@
         <button type="submit" name="send_msg">SEND</button>
       </form>
     </div>
-    <div class="contact-right">
+    <div class="contact-right" data-aos="fade-left" data-aos-duration="1000">
       <h3>Reach Us</h3>
       <table>
         <tr>
