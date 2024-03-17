@@ -51,6 +51,10 @@ def delete_(request, id_delete):
         doctor.delete()
     else:
         user = User.objects.get(id=id_delete)
+        pro = profile.objects.get(user=user)
+        if Doctors.objects.filter(username=pro).exists():
+            doctor = Doctors.objects.get(username=pro)
+            doctor.delete()
         user.delete()
     return redirect('dash')
 

@@ -2,6 +2,16 @@ header {
   background-color: transparent;
   color: white;
 }
+.no-doctor-exist {
+  text-align: center;
+  font-size: 35px;
+  margin: 120px 240px;
+  padding: 30px;
+  width: 700px;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
 section.intro {
   transform: translateY(-30px);
   height: 800px;

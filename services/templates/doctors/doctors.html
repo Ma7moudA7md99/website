@@ -16,7 +16,9 @@
     <div class="word">
       <h1>Doctor's</h1>
     </div>
-    {% for doctor in doctors %}
+    {% if not doctors %}
+    <h1 class="no-doctor-exist">There is no doctors in this section for now</h1>
+    {% else %} {% for doctor in doctors %}
     <div class="card">
       <div class="img">
         <img src="{{ doctor.doctor_image.url }}" alt="" />
@@ -32,7 +34,7 @@
         <i class="fa-solid fa-message"></i>
       </a>
     </div>
-    {% endfor %}
+    {% endfor %} {% endif %}
   </div>
 </section>
 <script>
@@ -44,6 +46,12 @@
     }
     if (window.scrollY <= intro.offsetHeight - 100) {
       header.style.color = "white";
+    }
+    if (window.scrollY >= intro.offsetHeight - 10) {
+      header.style.background = "white";
+    }
+    if (window.scrollY <= intro.offsetHeight - 10) {
+      header.style.background = "transparent";
     }
   });
   AOS.init();

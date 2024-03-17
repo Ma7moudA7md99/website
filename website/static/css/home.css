@@ -323,7 +323,7 @@ section.doctors .container .card .text::before {
   top: -155px;
   height: 160px;
 }
-.section.doctors .container .card .text .service-link {
+section.doctors .container .card .text .service-link {
   transform: translateY(117%);
 }
 section.doctors .container .card .text {

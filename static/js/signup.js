@@ -21,7 +21,9 @@ const submit = document.getElementById("submit");
 passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
   const strength = calculatePasswordStrength(password);
-  if (strength == "25" || strength == "") {
+  if (strength === "0") {
+    passwordStrengthDisplay.textContent = `Password must be more than 8 chars`;
+  } else if (strength == "25") {
     passwordStrengthDisplay.textContent = `Password Strength: weak`;
   } else if (strength == "50") {
     passwordStrengthDisplay.textContent = `Password Strength: moderate`;
@@ -46,6 +48,11 @@ function calculatePasswordStrength(password) {
     (hasUpperCase + hasLowerCase + hasNumbers + hasSpecialChars) / 4;
 
   // Map strength value to a percentage (0% to 100%)
+  if (password.length < 8) {
+    {
+      return "0";
+    }
+  }
   return Math.min(strength * 100, 100);
 }
 // make submit button disabled on load or inputs are empty
