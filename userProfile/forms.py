@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from .models import profile
 from django.contrib.auth.models import User
+from dashboard.models import Doctors
 
 class ProfileUserUpdateForm(forms.ModelForm):
     old_password = forms.CharField(label="Old Password", widget=forms.PasswordInput)
@@ -47,4 +48,11 @@ class ProfileUserUpdateForm(forms.ModelForm):
             user.set_password(new_password)
         if commit:
             user.save()
+
+        image = self.cleaned_data.get('image')
+        if image:
+            if Doctors.objects.filter(username=user).exists():
+                doctor = Doctors.objects.get(username=user)
+                doctor.doctor_image = image
+                doctor.save()
         return super().save(commit)

@@ -32,42 +32,11 @@ for (let i = 0; i < cards.length; i++) {
   }, 1600);
 }
 
-// if (window.innerWidth <= 425) {
-//   for (let i = 0; i < cards.length; i++) {
-//     if (i % 2 === 0) {
-//       cards[i].setAttribute(
-//         { "data-aos": "fade-left" },
-//         { "data-aos-duration": "800" }
-//       );
-//     } else {
-//       cards[i].setAttribute(
-//         { "data-aos": "fade-right" },
-//         { "data-aos-duration": "800" }
-//       );
-//     }
-//   }
-// }
+// contact prevent default
+const contactBtn = document.getElementById("contactSubmit");
+contactBtn.onclick = function (e) {
+  e.preventdefault();
+  alert("Your Message  has been sent!");
+};
 // AOS initialize
 AOS.init();
-
-// doctors slide show
-let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("card-slide");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].classList.remove("fade-in"); // Remove the fade-in class from all slides
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {
-    slideIndex = 1;
-  }
-  slides[slideIndex - 1].classList.add("fade-in"); // Apply the fade-in class to the current slide
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
-
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}

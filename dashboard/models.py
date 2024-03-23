@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from userProfile.models import profile
 from django.dispatch import receiver
@@ -15,7 +16,7 @@ def validate_max_value(value):
     
 
 class Doctors(models.Model):
-    username = models.OneToOneField(profile,  on_delete=models.SET_NULL, null=True)
+    username = models.OneToOneField(User,  on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length= 150)
     specialization = models.CharField(max_length= 150)
     rating = models.PositiveIntegerField(

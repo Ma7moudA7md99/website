@@ -4,7 +4,7 @@ from .forms import *
 # Create your views here.
 
 
-def profile(request):
+def profile_page(request):
     if request.method == 'POST':
         form = ProfileUserUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():

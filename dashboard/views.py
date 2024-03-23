@@ -16,7 +16,7 @@ def dashboard(request):
 
 
 def update_doctor(request, doctor_id):
-    
+    users = User.objects.all()
     doctor = Doctors.objects.get(id= doctor_id)
     if request.method == 'POST':
         form = DoctorForm(request.POST, request.FILES, instance=doctor)
@@ -34,14 +34,16 @@ def update_doctor(request, doctor_id):
             'address': doctor.address
         })
 
-    return render(request, 'update.html', {'form': form, 'doctor': doctor, 'btn_title': 'Update'})
+    return render(request, 'update.html', {'form': form, 'doctor': doctor,'users':users, 'btn_title': 'Update'})
 
 def add_doctor(request):
     form = DoctorForm()
     if request.method == "POST":
+        print("doctor post")
         form = DoctorForm(request.POST, request.FILES)
         if form.is_valid():
                 form.save()
+                print("doctor saved")
                 return redirect('dash') 
     return render(request, 'update.html', {'form': form, 'btn_title': 'Add new doctor'})
 
@@ -64,6 +66,21 @@ def user_status(request, user_id):
     user.save()
     return redirect('dash')
 
+def get_user_info(request, user_id):
+    if request.method == 'GET':
+        print(user_id)
+        user = User.objects.get(id=user_id)
+        user_data = {
+            'firstName': user.first_name,
+            'lastName': user.last_name,
+            'email': user.email,
+            'image': user.profile.image.url,
+
+        }
+        return JsonResponse(user_data)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+    
 
 def doctor_dash(request):
     pass

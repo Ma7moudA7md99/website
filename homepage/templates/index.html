@@ -279,7 +279,7 @@
       data-aos-duration="1000"
     >
       <h3>Send Your Request</h3>
-      <form method="post" action="send_msg/">
+      <form method="post" action="{% url 'send_msg' %}">
         {% csrf_token %}
 
         <div class="input-row">
@@ -291,14 +291,15 @@
               name="email-contact"
               id="email-"
               value="{{user.profile.email}}"
+              required
             />
             {% else %}
-            <input type="email" name="email-contact" id="email-" />
+            <input type="email" name="email-contact" id="email-" required />
             {% endif %}
           </div>
           <div class="input-group">
             <label>Subject</label>
-            <input type="text" name="subject" id="subject" />
+            <input type="text" name="subject" id="subject" required />
           </div>
         </div>
 
@@ -308,9 +309,10 @@
           placeholder="Your Message"
           name="message"
           id="message"
+          required
         ></textarea>
 
-        <button type="submit" name="send_msg">SEND</button>
+        <button type="submit" id="contactSubmit">SEND</button>
       </form>
     </div>
     <div class="contact-right" data-aos="fade-left" data-aos-duration="1000">
@@ -438,19 +440,5 @@
 </section>
 <!-- end team -->
 <script src="{% static 'js/home.js' %}"></script>
-<script>
-  for (let i = 0; i < cards.length; i++) {
-    setTimeout(() => {
-      cards[i].addEventListener("mouseover", () => {
-        cardLinks[i].style.visibility = "visible";
-        cardLinks[i].style.opacity = "1";
-      });
-      cards[i].addEventListener("mouseout", () => {
-        cardLinks[i].style.visibility = "hidden";
-        cardLinks[i].style.opacity = "0";
-      });
-    }, 1600);
-  }
-</script>
-<script src="{% static 'js/contact.js' %}"></script>
+
 {% endblock %}

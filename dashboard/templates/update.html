@@ -12,8 +12,8 @@
       <h1>{{message}}</h1>
       {% endfor %}
       <br />
-      {{ form.as_p }} <br />
-      <button type="submit">{{ btn_title}}</button>
+      {{ form.as_div }} <br />
+      <button type="submit" id="submit">{{ btn_title}}</button>
     </form>
   </div>
 </section>
@@ -35,5 +35,36 @@
   }
   doc_name.setAttribute("oninput", "validateInput(this)");
   specialization.setAttribute("oninput", "validateInput(this)");
+  // update information when username is chosen
+  const usernameField = document.getElementById("id_username");
+  const nameField = document.getElementById("id_name");
+  const ratingField = document.getElementById("id_rating");
+  const cellphoneField = document.getElementById("id_cellphone");
+  const imageLabel = document.querySelector("label[for='id_cellphone']");
+  // const doctorImageField = document.getElementById("id_doctor_image");
+  const addressField = document.getElementById("id_address");
+
+  usernameField.addEventListener("change", function (event) {
+    const selectedUsername = event.target.value;
+
+    // Make an AJAX request to fetch doctor's information based on the selected username
+    fetch(`get_user_info/${selectedUsername}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // Populate the fields with the retrieved doctor's information
+        nameField.value = data.firstName + " " + data.lastName;
+        imageLabel.innerHTML = ` <img src="${data.image}" alt="${data.firstName}" style="width:50px; height:50px; border-radius:50%; display:inline-block; margin: 10px 0"/>`;
+        var doctor_image = data.image;
+      })
+      .catch((error) => {
+        console.error("Error fetching user information:", error);
+      });
+  });
+
+  document.querySelector("#submit").addEventListener("onclick", () => {
+    document.querySelector("form").append(`
+<input type="file" name="doctor_image" id="id_doctor_image" value="${doctor_image}" style="display:none">
+    `);
+  });
 </script>
 {% endblock %}

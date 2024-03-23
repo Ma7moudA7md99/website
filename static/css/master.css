@@ -95,7 +95,6 @@ header {
 }
 .item-is-active {
   transform: rotateX(0deg) !important;
-  transition: 0.1s !important;
 }
 .container {
   width: 80%;
@@ -152,7 +151,7 @@ header .profile #profile-items {
   padding: 0 5px;
   border-radius: 10px;
   box-shadow: var(--shadow);
-  transition: 2s transform;
+  transition: 1s transform;
   transform-origin: top;
   transform: rotateX(90deg);
 }

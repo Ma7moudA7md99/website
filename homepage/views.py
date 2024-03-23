@@ -12,8 +12,7 @@ def home(request):
 
   user_doctor = False
   if request.user.is_authenticated:
-    Profile = profile.objects.get(user=request.user)
-    if Doctors.objects.filter(username=Profile).exists():
+    if Doctors.objects.filter(username=request.user).exists():
       user_doctor = True
   
   return render(request,'index.html', {"is_doctor":user_doctor})
@@ -92,8 +91,8 @@ def send_msg(request):
     msg.subject = subject
     msg.message = message
     msg.save()
-    return HttpResponse('done')
-  return render(request,'index.html')
+
+    return HttpResponse()
 # function to logout 
 def log_out(request):
   logout(request)
