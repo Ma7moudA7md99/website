@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +33,9 @@
     <aside>
       <div class="container">
         <div class="logo">
-          <img src="{% static 'image/white logo.png' %}" alt="logo" />
+          <a href="{% url 'home' %}"
+            ><img src="{% static 'image/white logo.png' %}" alt="logo"
+          /></a>
         </div>
         <div class="items">
           <ul>
@@ -72,8 +74,8 @@
                 </div>
               </div>
             </td>
-            <td>{% if user.is_staff %} Staff {% else %} Normal {% endif%}</td>
-            <td>{{ user.last_login }}</td>
+            <td>{% if user.is_staff %} Staff {% else %} Normal {% endif %}</td>
+            <td>{{ user.last_login | format_timestamp }}</td>
             <td>
               {% if user.is_active %} Active {% else %} Inactive {% endif%}
               <br />
@@ -171,17 +173,22 @@
   </body>
   <script>
     const items = document.querySelectorAll(".items ul li");
+    const spans = document.querySelectorAll(".items ul li span");
     const sections = document.getElementsByTagName("section");
-
+    items[0].style.color = "var(--main-color)";
+    spans[0].style.width = "100%";
     function toggleSections(sectionIndex) {
       for (let i = 0; i < sections.length; i++) {
         if (i === sectionIndex) {
           // Show the selected section
           sections[i].style.display = "block";
+          items[i].style.color = "var(--main-color)";
+          spans[i].style.width = "100%";
         } else {
           // Hide other sections
-
           sections[i].style.display = "none";
+          items[i].style.color = "white";
+          spans[i].style.width = "0";
         }
       }
     }

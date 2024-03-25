@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
-from .models import profile
+from .models import Profile
 from django.contrib.auth.models import User
 from dashboard.models import Doctors
 
@@ -10,7 +10,7 @@ class ProfileUserUpdateForm(forms.ModelForm):
     new_password2 = forms.CharField(label="Confirm New Password", widget=forms.PasswordInput, required=False)
 
     class Meta:
-        model = profile
+        model = Profile
         fields = ['first_name', 'last_name','email','gender', 'age', 'country','image']
 
     def clean_old_password(self):
@@ -56,3 +56,9 @@ class ProfileUserUpdateForm(forms.ModelForm):
                 doctor.doctor_image = image
                 doctor.save()
         return super().save(commit)
+
+
+class DoctorUpdate(forms.ModelForm):
+    class Meta:
+        model = Doctors
+        fields = ['cellphone', 'address']

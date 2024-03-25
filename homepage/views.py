@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from userProfile.models import profile
+from userProfile.models import Profile
 from dashboard.models import UserMessage, Doctors
 
 # Create your views here.
@@ -19,6 +19,7 @@ def home(request):
 
 # function to render and load html content for sign up page
 # and it creates a new user too 
+
 def sign_up(request):
   if request.method == 'POST':
     # Get the username and password provided by the user.
@@ -46,7 +47,10 @@ def sign_up(request):
       newUser.first_name = fname
       newUser.last_name = lname
       newUser.save()
-      profile.objects.create(user=newUser, age=age, gender=gender, country=country).save()
+      try:
+        Profile.objects.create(user=newUser, username=username,first_name = fname,last_name = lname,age=age, gender=gender, country=country).save()
+      except Exception as r: 
+        print(r)
       login(request, newUser)
       return redirect('home')
   return render(request, 'signup.html')
@@ -61,10 +65,11 @@ def sign_in(request):
 
 
     user = authenticate(username=username, password=password)
-    Profile = profile.objects.get(user=user)
+    profile = Profile.objects.get(user=user)
     try:
-        doctor_profile = Doctors.objects.get(username=Profile)
+        doctor_profile = Doctors.objects.get(username=user)
     except:
+      messages.error(request, 'No User Exists Please <a href="/#sign_up">Sign up</a>')
       doctor_profile = False
     if user is not None:
       if not user.is_active:
@@ -72,8 +77,8 @@ def sign_in(request):
       login (request, user)
       if user.is_staff:
         return redirect('dash')
-      # if doctor_profile:
-      #   return redirect('dash')
+      if doctor_profile:
+        return redirect('doctor dashboard')
       return redirect('/', user)
     else:
       messages.error(request, 'Wrong username or password')

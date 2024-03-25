@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from .models import Doctors, UserMessage
-from userProfile.models import profile
+from userProfile.models import Profile
 from .forms import DoctorForm
 
 # Create your views here.
@@ -12,7 +12,9 @@ def dashboard(request):
     doctors = Doctors.objects.all()
     users = User.objects.all()
     user_messages = UserMessage.objects.all()
-    return render(request, 'dashboard.html', {'doctors': doctors, 'users': users, 'messages':user_messages})
+    
+
+    return render(request, 'dashboard.html', {'doctors': doctors, 'users': users, 'messages':user_messages  })
 
 
 def update_doctor(request, doctor_id):
@@ -53,7 +55,7 @@ def delete_(request, id_delete):
         doctor.delete()
     else:
         user = User.objects.get(id=id_delete)
-        pro = profile.objects.get(user=user)
+        pro = Profile.objects.get(user=user)
         if Doctors.objects.filter(username=pro).exists():
             doctor = Doctors.objects.get(username=pro)
             doctor.delete()

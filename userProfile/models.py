@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django_countries import countries
 from PIL import Image
 
-class profile(models.Model):
+class Profile(models.Model):
     GENDER_CHOICES = {
         'M': 'Male',
         'F': 'Female'
@@ -35,3 +35,20 @@ class profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class DoctorUserChat(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='sent_messages', null=True)
+    recipient = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='received_messages', null=True)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"From: {self.sender} | To: {self.recipient} | Content: {self.content}"
+
+    def delete(self, *args, **kwargs):
+        # Override delete method to mark message as deleted
+        self.is_deleted = True
+        self.save()

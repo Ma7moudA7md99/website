@@ -7,6 +7,5 @@ urlpatterns = [
   path('add doctor', views.add_doctor, name='add doctor'),
   path('delete/<int:id_delete>/', views.delete_, name='delete'),
   path('user_status/<int:user_id>/', views.user_status, name='user status' ),
-  path('doctor/dashboard', views.doctor_dash, name='doctor dashboard'),
   path('get_user_info/<int:user_id>/', views.get_user_info, name='get_user_info'), #ajax request to get user info by username
 ]

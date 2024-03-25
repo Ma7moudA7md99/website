@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from userProfile.models import profile
+from userProfile.models import Profile
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 # Create your models here.
@@ -33,7 +33,7 @@ class Doctors(models.Model):
         return f'{self.name}, {self.specialization}'
     
 
-@receiver(post_save, sender=profile)
+@receiver(post_save, sender=Profile)
 def update_doctor_image(sender, instance, created, **kwargs):
     if created:  # If profile instance is created
         # Get the associated doctor instance

@@ -56,7 +56,6 @@ aside .container .items ul li span {
   z-index: -1;
 }
 aside .container .items ul li:hover {
-  /* list-style: disc; */
   color: var(--main-color);
 }
 aside .container .items ul li:hover span {
@@ -76,6 +75,8 @@ section h1 {
   font-size: 2em;
   letter-spacing: 3px;
   text-transform: uppercase;
+  background-color: var(--main-color);
+  color: white;
 }
 section .container {
   width: 95%;
