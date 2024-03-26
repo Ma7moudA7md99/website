@@ -164,7 +164,7 @@
             <td>{{ message.user_email}}</td>
             <td>{{ message.subject}}</td>
             <td>{{ message.message}}</td>
-            <td>{{ message.send_at}}</td>
+            <td>{{ message.send_at| format_timestamp}}</td>
           </tr>
           {% endfor %}
         </table>

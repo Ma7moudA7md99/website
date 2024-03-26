@@ -17,8 +17,8 @@ def format_timestamp(timestamp):
 
     now = datetime.now()
     if timestamp.date().day == now.date().day and timestamp.date().month == now.date().month:
-        return timestamp.astimezone(pytz.timezone('Africa/Cairo')).strftime('%H:%M')  # Display only hour and minute if same day
+        return timestamp.astimezone(pytz.timezone('Africa/Cairo')).strftime('%I:%M %p')  # Display only hour and minute if same day
     elif timestamp.date().year == now.date().year:
-        return timestamp.astimezone(pytz.timezone('Africa/Cairo')).strftime('%m-%d %H:%M')
+        return timestamp.astimezone(pytz.timezone('Africa/Cairo')).strftime('%m-%d %I:%M %p')
     else:
-        return timestamp.astimezone(pytz.timezone('Africa/Cairo')).strftime('%Y-%m-%d %H:%M')
+        return timestamp.astimezone(pytz.timezone('Africa/Cairo')).strftime('%Y-%m-%d %I:%M %p')

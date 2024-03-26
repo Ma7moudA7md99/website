@@ -141,7 +141,7 @@
         </p>
         <div class="service-link">
           {% if user.is_authenticated %}
-          <a href="services.html"
+          <a href="{% url 'lung cancer' %}"
             >Go To <i class="fa-solid fa-arrow-right"></i
           ></a>
           {% else %}
@@ -279,9 +279,8 @@
       data-aos-duration="1000"
     >
       <h3>Send Your Request</h3>
-      <form method="post" action="{% url 'send_msg' %}">
+      <form method="post" action="{% url 'send_msg' %}" id="contactForm">
         {% csrf_token %}
-
         <div class="input-row">
           <div class="input-group">
             <label>Email</label>
@@ -331,12 +330,48 @@
           <td>Kafr-Elshekh, Egypt</td>
         </tr>
       </table>
+      <div class="response"></div>
     </div>
     <!-- </div> -->
   </div>
 </section>
 <!-- end contact -->
 <!-- team -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get form data
+      var formData = new FormData(form);
+
+      // Make AJAX request
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "send_msg/", true);
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+      // Handle response
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+          var response = JSON.parse(xhr.responseText);
+          // Do something with the response
+          document.getElementsByClassName("response")[0].innerHTML =
+            "<p style='text-align:center; font-size:1.3em; color: white' >" +
+            response.message.replace(/\n/g, "<br />") +
+            "</p>";
+        } else {
+          // Handle error
+          console.error("Request failed");
+        }
+      };
+
+      // Send form data
+      xhr.send(formData);
+    });
+  });
+</script>
 
 <section class="about-section" id="about">
   <div class="containerr">

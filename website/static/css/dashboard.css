@@ -66,6 +66,7 @@ section {
   transition: 1s ease-in-out;
   margin-left: 20%;
   height: 100%;
+  padding-top: 60px;
 }
 section.users {
   display: block;
@@ -77,6 +78,10 @@ section h1 {
   text-transform: uppercase;
   background-color: var(--main-color);
   color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 section .container {
   width: 95%;
@@ -127,7 +132,7 @@ section .container table tr td img {
 }
 section .container a.add_doctor {
   position: absolute;
-  top: 0;
+  top: 17px;
   right: 10%;
   font-size: 1.5em;
   color: var(--main-color);

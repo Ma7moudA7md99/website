@@ -1,7 +1,7 @@
 from django.shortcuts import render 
 from django.http import JsonResponse
 from .models import SkinCancer
-from .forms import VirusCForm
+from .forms import VirusCForm, LungCancerForm
 from dashboard.models import Doctors
 from .lib_models import *
 from .ai_bot import medical_model
@@ -58,6 +58,7 @@ def model_result_text(model_result):
       result = f"Your result is {percentage[0]:.2f}% <br /> Based on the results, there might be a possibility of having Skin Cancer. <br /> Please consult a doctor immediately!"
     return  result
 
+# Render Virus C form and load model with results
 def virus_c(request):
   if request.method == 'POST':
     form = VirusCForm(request.POST)
@@ -81,23 +82,55 @@ def virus_c(request):
         result = 'You may be infected with the virus but you need to consult your doctor to know the final result'
       else:
         result = "Thank your God you are not infected with the virus"
-      print(result)
+      form.save()
       return JsonResponse({"result": result})
-    print('not valid')
   else:
     form = VirusCForm()
   return render(request, 'virus c/virus_c.html', {'form': form})
 
+def lung_cancer(request):
+  if request.method == "POST":
+    form = LungCancerForm(request.POST)
+    if form.is_valid():
+            # If the form is valid, retrieve the cleaned data
+            cleaned_data = form.cleaned_data
+            # Now you can access each field's value from cleaned_data dictionary
+            smoking = cleaned_data.get('SMOKING')
+            yellow_fingers = cleaned_data.get('YELLOW_FINGERS')
+            anxiety = cleaned_data.get('ANXIETY')
+            peer_pressure = cleaned_data.get('PEER_PRESSURE')
+            chronic_disease = cleaned_data.get('CHRONIC_DISEASE')
+            fatigue = cleaned_data.get('FATIGUE')
+            allergy = cleaned_data.get('ALLERGY')
+            wheezing = cleaned_data.get('WHEEZING')
+            alcohol_consuming = cleaned_data.get('ALCOHOL_CONSUMING')
+            coughing = cleaned_data.get('COUGHING')
+            shortness_of_breath = cleaned_data.get('SHORTNESS_OF_BREATH')
+            swallowing_difficulty = cleaned_data.get('SWALLOWING_DIFFICULTY')
+            chest_pain = cleaned_data.get('CHEST_PAIN')
+            gender = cleaned_data.get('gender')
+            age = cleaned_data.get('age')
+            # from sklearn.model_selection import RandomizedSearchCV
+            # from sklearn.svm import SVC
+            # param_grid={'C':[0.001,0.01,0.1,1,10,100], 'gamma':[0.001,0.01,0.1,1,10,100]}
+            # rcv=RandomizedSearchCV(SVC(),param_grid,cv=5)
+            model_array = np.array([smoking, yellow_fingers, anxiety, peer_pressure,
+                      chronic_disease, fatigue, allergy, wheezing,
+                      alcohol_consuming, coughing, shortness_of_breath,
+                      swallowing_difficulty, chest_pain, gender, age]).reshape(1, -1)
+            answer = lungPrediction.predict(model_array)
+            # answer = rcv.predict(model_array.reshape(-1, 1))
+            result = "good" if  answer == 0 else "bad"
+            form.save()
+            return JsonResponse({'result' : result})
+  form = LungCancerForm()
+  return render(request, 'lung cancer/lung_cancer.html', {'form':form})
+# Retrieve doctor according to specialization 
 def doctor(request, specialization):
-    if specialization == "heart":
-      doctors = Doctors.objects.filter(specialization="heart")
-    elif specialization == "dentist":
-      doctors = Doctors.objects.filter(specialization="dentist")
-    else:
-      doctors = Doctors.objects.all()
+    doctors = Doctors.objects.filter(specialization=specialization)
     return render(request, 'doctors/doctors.html', {'doctors': doctors})
 
-
+# Send Messages to doctors
 def doctor_message(request, doctor_id):
   doctor = Doctors.objects.get(id=doctor_id)
   return render(request, "doctors/message.html", {"doctor": doctor})

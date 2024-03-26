@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Lung Cancer
+{%endblock %} {% block content %}
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"
+></script>
+<link rel="stylesheet" href="{% static 'css/terminology.css' %}" />
+<div class="intro-img">
+  <div class="container">
+    <div class="img">
+      <img
+        src="{% static 'image/home page/services/lungcancer.jpg' %}"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <h1>Lung Cancer</h1>
+  <div class="container">
+    <div class="left-img">
+      <img src="{% static 'image/home page/services/lungpage.jpg' %}" alt="" />
+    </div>
+    <div class="form">
+      <form id="lungForm">
+        {% csrf_token %} {{form.as_p}} <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="result"></div>
+  </div>
+</div>
+<script>
+  const form = document.querySelector("form");
+  const result = document.getElementById("result");
+  let loadingInterval; // Variable to hold the loading interval
+
+  document.addEventListener("submit", (e) => {
+    // Start the loading animation
+    e.preventDefault();
+    submitForm();
+  });
+
+  function submitForm() {
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData(document.getElementById("lungForm"));
+    var result = document.getElementsByClassName("result")[0];
+    xhr.open("POST", "lung cancer", true);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          result.innerHTML = xhr.response.slice(12, self.length - 2);
+        } else {
+          result.innerHTML = "error : " + xhr;
+        }
+      }
+    };
+    xhr.send(formData);
+  }
+</script>
+{% endblock%}

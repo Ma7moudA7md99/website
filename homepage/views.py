@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -97,7 +97,10 @@ def send_msg(request):
     msg.message = message
     msg.save()
 
-    return HttpResponse()
+    message = "Message Sent Successfully ! \n We will contact you as soon as possible"
+    return JsonResponse({'message': message})
+  
+
 # function to logout 
 def log_out(request):
   logout(request)
