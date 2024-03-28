@@ -6,13 +6,97 @@
   crossorigin="anonymous"
 ></script>
 <link rel="stylesheet" href="{% static 'css/terminology.css' %}" />
-<div class="intro-img">
+<style>
+  header {
+    background-color: transparent;
+    color: white;
+  }
+  .intro-img {
+    padding: 0;
+    margin: 0;
+    transform: translateY(-6%);
+    background-image: url("../../../static/image/home\ page/services/lungcancer.jpg");
+    height: 800px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    padding: 30px 0;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  #lungForm {
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    padding: 30px;
+  }
+  #lungForm div {
+    margin: 5px;
+    border-radius: 10px;
+    color: var(--main-color);
+  }
+  #lungForm div #id_age {
+    width: 200%;
+    height: 30px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: white;
+    border: 1px solid var(--main-color);
+    cursor: pointer;
+    font-size: 1.3em;
+  }
+  #lungForm div label {
+    cursor: pointer;
+  }
+  #lungForm button {
+    width: 200%;
+    height: 30px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: white;
+    background-color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    font-size: 1.3em;
+  }
+  #lungForm button:hover {
+    box-shadow: var(--shadow);
+  }
+  .result {
+    background-color: var(--main-color);
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .result h1 {
+    color: white;
+    margin: 10px 0;
+  }
+  .result p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.3em;
+    margin: 0 10px;
+    line-height: 2;
+  }
+</style>
+<div class="intro-img" id="intro">
   <div class="container">
-    <div class="img">
-      <img
-        src="{% static 'image/home page/services/lungcancer.jpg' %}"
-        alt=""
-      />
+    <div class="title">
+      <h1>Lung Cancer</h1>
+      <p>Not smoking tobacco is the best way to prevent lung cancer.</p>
     </div>
   </div>
 </div>
@@ -22,13 +106,18 @@
   <div class="container">
     <div class="left-img">
       <img src="{% static 'image/home page/services/lungpage.jpg' %}" alt="" />
+      <div class="result">
+        <h1>Result</h1>
+        <p id="result-text">Your Result will be displayed here!</p>
+      </div>
     </div>
     <div class="form">
       <form id="lungForm">
-        {% csrf_token %} {{form.as_p}} <button type="submit">Submit</button>
+        {% csrf_token %} {{form.as_div}} <br />
+        <br />
+        <button type="submit">Submit</button>
       </form>
     </div>
-    <div class="result"></div>
   </div>
 </div>
 <script>
@@ -45,19 +134,38 @@
   function submitForm() {
     var xhr = new XMLHttpRequest();
     var formData = new FormData(document.getElementById("lungForm"));
-    var result = document.getElementsByClassName("result")[0];
+    var result = document.getElementById("result-text");
     xhr.open("POST", "lung cancer", true);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          result.innerHTML = xhr.response.slice(12, self.length - 2);
+          result.textContent = xhr.response.slice(12, self.length - 2);
         } else {
-          result.innerHTML = "error : " + xhr;
+          result.textContent = "error : " + xhr;
         }
       }
     };
     xhr.send(formData);
   }
+</script>
+
+<script>
+  const intro = document.getElementById("intro");
+  // const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY >= intro.offsetHeight - 100) {
+      header.style.color = "black";
+    }
+    if (window.scrollY <= intro.offsetHeight - 100) {
+      header.style.color = "white";
+    }
+    if (window.scrollY >= intro.offsetHeight - 10) {
+      header.style.background = "white";
+    }
+    if (window.scrollY <= intro.offsetHeight - 10) {
+      header.style.background = "transparent";
+    }
+  });
 </script>
 {% endblock%}

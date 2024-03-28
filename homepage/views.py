@@ -19,71 +19,75 @@ def home(request):
 
 # function to render and load html content for sign up page
 # and it creates a new user too 
-
 def sign_up(request):
-  if request.method == 'POST':
-    # Get the username and password provided by the user.
-    fname = request.POST['firstName']
-    lname = request.POST['lastName']
-    username = request.POST['username']
-    gender = request.POST['gender']
-    country = request.POST['country']
-    email = request.POST['email']
-    age = request.POST['age']
-    password = request.POST['password']
-    # checks if the username is used before or not
-    if User.objects.filter(username=username).exists():
-      messages.error(request, 'Username is already taken !!')
-      return render(request,'signUp.html')
-    # checks if the email is used before or not
-    elif User.objects.filter(email=email).exists():
-      messages.error(request, 'This email is used before')
-      return render(request,'signUp.html')
-    elif len(username) < 7:
-      messages.error(request, 'Username must be bigger than 7 characters')
-      return render(request,'signUp.html')
-    else:
-      newUser = User.objects.create_user(username, email, password)
-      newUser.first_name = fname
-      newUser.last_name = lname
-      newUser.save()
-      try:
-        Profile.objects.create(user=newUser, username=username,first_name = fname,last_name = lname,age=age, gender=gender, country=country).save()
-      except Exception as r: 
-        print(r)
-      login(request, newUser)
-      return redirect('home')
-  return render(request, 'signup.html')
+    if request.method == 'POST':
+        # Get data from the AJAX request
+        fname = request.POST.get('firstName')
+        lname = request.POST.get('lastName')
+        username = request.POST.get('username')
+        gender = request.POST.get('gender')
+        country = request.POST.get('country')
+        email = request.POST.get('email')
+        age = request.POST.get('age')
+        password = request.POST.get('password')
+        
+        # Check if username or email already exist
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'success': False, 'message': 'Username is already taken !!'})
+        elif User.objects.filter(email=email).exists():
+            return JsonResponse({'success': False, 'message': 'This email is used before'})
+        elif len(username) < 7:
+            return JsonResponse({'success': False, 'message': 'Username must be bigger than 7 characters'})
+        else:
+            # Create new user and profile
+            newUser = User.objects.create_user(username, email, password)
+            newUser.first_name = fname
+            newUser.last_name = lname
+            newUser.save()
+            try:
+                Profile.objects.create(user=newUser, username=username, first_name=fname, last_name=lname, age=age, gender=gender, country=country)
+            except Exception as e:
+                print(e)
+            login(request, newUser)
+            return JsonResponse({'success': True, 'redirect_url': '/'})  # or any other URL you want to redirect to after successful signup
 
+    # If not an AJAX request, return error
+    return render(request, 'signup.html')
 # function to render and load html content for sign in page
 # and it check if the information's from the user is signed or not
 def sign_in(request):
-  if request.method == 'POST':
-    # Get the username and password provided by the user.
-    username = request.POST['username']
-    password = request.POST['password']
+    if request.method == 'POST':
+        # Get the username and password provided by the user.
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
+        # Check if the username exists in the database
+        if User.objects.filter(username=username).exists():
+            # If username exists, attempt authentication
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                # Check if the user account is active
+                if user.is_active:
+                    # Log in the user
+                    login(request, user)
+                    # Redirect to appropriate dashboard based on user type
+                    if user.is_staff:
+                        return JsonResponse({'success': True, 'redirect_url': 'dashboard/dash/'})
+                    else:
+                        return JsonResponse({'success': True, 'redirect_url': '/'})
+                else:
+                    # Display error message for suspended account
+                    return JsonResponse({'success': False, 'message': 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.'})
+            else:
+                # Display error message for wrong password
+                return JsonResponse({'success': False, 'message': 'Wrong username or password.'})
+        else:
+            # Display error message for user not found
+            return JsonResponse({'success': False, 'message': 'This User does not exist. Please <a href="/sign_up">Sign up</a>'})
 
-    user = authenticate(username=username, password=password)
-    profile = Profile.objects.get(user=user)
-    try:
-        doctor_profile = Doctors.objects.get(username=user)
-    except:
-      messages.error(request, 'No User Exists Please <a href="/#sign_up">Sign up</a>')
-      doctor_profile = False
-    if user is not None:
-      if not user.is_active:
-        messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
-      login (request, user)
-      if user.is_staff:
-        return redirect('dash')
-      if doctor_profile:
-        return redirect('doctor dashboard')
-      return redirect('/', user)
-    else:
-      messages.error(request, 'Wrong username or password')
-      
-  return render(request, 'signin.html')
+    # If the request is not POST, return HTML template
+    return render(request, 'signin.html')
+
 
 # function that send a message from contact section
 def send_msg(request):
@@ -91,7 +95,7 @@ def send_msg(request):
     subject = request.POST['subject']
     email_sender = request.POST['email-contact']
     message = request.POST['message']
-
+    # save the message in database 
     msg = UserMessage.objects.create(user_email= email_sender)
     msg.subject = subject
     msg.message = message

@@ -51,7 +51,7 @@
             <img src="{% static 'image/logo.png' %}" alt="" />
           </a>
         </div>
-        {% for message in messages %}
+        <!-- {% for message in messages %}
         <div class="wrong-info">
           <div class="info-text">
             <p>
@@ -62,7 +62,7 @@
             </p>
           </div>
         </div>
-        {% endfor %}
+        {% endfor %} -->
         <!-- 
         <div class="wrong-info" style="display: none">
           <div class="info-text">
@@ -74,7 +74,8 @@
         </div> -->
 
         <div class="sign-form">
-          <form action="" method="POST" class="loginForm">
+          <p id="error-message"></p>
+          <form method="POST" class="loginForm" id="signin-form">
             {% csrf_token %}
             <div class="username">
               <input
@@ -105,6 +106,38 @@
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#signin-form").submit(function (e) {
+          e.preventDefault(); // Prevent the form from submitting normally
+
+          // Get form data
+          var formData = $(this).serialize();
+
+          // Send AJAX request
+          $.ajax({
+            type: "POST",
+            url: "sign_in", // URL to your AJAX view
+            data: formData,
+            success: function (response) {
+              // Handle success response
+              if (response.success) {
+                // Redirect to home page or do something else
+                window.location.href = response.redirect_url;
+              } else {
+                // Display error message to the user
+                $("#error-message").html(response.message);
+              }
+            },
+            error: function (response) {
+              // Handle error
+              console.log("Error occurred during AJAX request" + response);
+            },
+          });
+        });
+      });
+    </script>
     <script src="{% static 'js/signin.js' %}"></script>
   </body>
 </html>

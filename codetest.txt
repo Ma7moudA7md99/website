@@ -1,0 +1,61 @@
+def sign_in(request):
+  if request.method == 'POST':
+    # Get the username and password provided by the user.
+    username = request.POST['username']
+    password = request.POST['password']
+
+    user = authenticate(username=username, password=password)
+    
+    try:
+      doctor_profile = Doctors.objects.get(username=user)
+    except:
+      messages.error(request, 'No User Exists Please <a href="/#sign_up">Sign up</a>')
+      doctor_profile = False
+    if user is not None:
+      if not user.is_active:
+        messages.error(request, 'Your account is suspended for now. Please <a href="/#contact">contact us</a> for assistance.')
+      login (request, user)
+      if user.is_staff:
+        return redirect('dash')
+      if doctor_profile:
+        return redirect('doctor dashboard')
+      return redirect('/', user)
+    else:
+      messages.error(request, 'Wrong username or password')
+      
+  return render(request, 'signin.html')
+
+
+
+
+def sign_up(request):
+  if request.method == 'POST':
+    # Get the username and password provided by the user.
+    fname = request.POST['firstName']
+    lname = request.POST['lastName']
+    username = request.POST['username']
+    gender = request.POST['gender']
+    country = request.POST['country']
+    email = request.POST['email']
+    age = request.POST['age']
+    password = request.POST['password']
+    # checks if the username is used before or not
+    if User.objects.filter(username=username).exists():
+      messages.error(request, 'Username is already taken !!')
+    # checks if the email is used before or not
+    elif User.objects.filter(email=email).exists():
+      messages.error(request, 'This email is used before')
+    elif len(username) < 7:
+      messages.error(request, 'Username must be bigger than 7 characters')
+    else:
+      newUser = User.objects.create_user(username, email, password)
+      newUser.first_name = fname
+      newUser.last_name = lname
+      newUser.save()
+      try:
+        Profile.objects.create(user=newUser, username=username,first_name = fname,last_name = lname,age=age, gender=gender, country=country).save()
+      except Exception as r: 
+        print(r)
+      login(request, newUser)
+      return redirect('home')
+  return render(request, 'signup.html')

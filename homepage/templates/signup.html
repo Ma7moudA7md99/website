@@ -34,7 +34,7 @@
           ><img src="{% static 'image/logo.png' %}" alt=""
         /></a>
       </div>
-      {% for message in messages %}
+      <!-- {% for message in messages %}
       <div class="wrong-info" style="text-align: center">
         <div class="info-text">
           <p>
@@ -43,7 +43,8 @@
           </p>
         </div>
       </div>
-      {% endfor %}
+      {% endfor %} -->
+      <p id="error-message"></p>
       <form id="signup_Form" method="POST" action="">
         {% for message in message %} {% csrf_token %} {% endfor %} <br />
         {% csrf_token %}
@@ -106,6 +107,39 @@
         <button type="submit" id="submit">Submit</button>
       </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#signup_Form").submit(function (e) {
+          e.preventDefault(); // Prevent the form from submitting normally
+
+          // Get form data
+          var formData = $(this).serialize();
+
+          // Send AJAX request
+          $.ajax({
+            type: "POST",
+            url: "sign_up", // URL to your AJAX view
+            data: formData,
+            success: function (response) {
+              // Handle success response
+              if (response.success) {
+                // Redirect to home page or do something else
+                window.location.href = response.redirect_url;
+              } else {
+                // Display error message to the user
+                $("#error-message").text(response.message);
+              }
+            },
+            error: function (response) {
+              // Handle error
+              console.log("Error occurred during AJAX request" + response);
+            },
+          });
+        });
+      });
+    </script>
+
     <script src="{% static 'js/signup.js' %}"></script>
   </body>
 </html>
